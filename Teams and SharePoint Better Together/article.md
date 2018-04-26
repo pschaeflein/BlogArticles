@@ -2,6 +2,7 @@
 
 ## Collaboration Silos
 
+![Collaboration silos](./CollaborationSilos.png)
 
 ## How did we get here?
 
