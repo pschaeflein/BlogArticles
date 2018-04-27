@@ -2,11 +2,15 @@
 
 ## Collaboration Silos
 
+Traditionally, our collaboration tools have been divided into silos based on the mode of communication involved. In the Microsoft space, we've used Outlook and Exchange for persistent messaging, Lync or Skype for Business for real-time communication, and SharePoint to provide a workspace where we can share documents and other information.
+
 ![Collaboration silos](./CollaborationSilos.png)
+
+Most of us are used to this, and we accept it as part of everyday life, but it's really not ideal. A lot of the popularity of Microsoft Teams is due to the way it consolidates many modes of communications under a "single pane of glass", and allows us to focus on collaboration rather than collaboration tools.
 
 ## How did we get here?
 
-Our electronic communication and collaboration tools have evolved from the real world. Mail was the first to make the leap from real world to online when, in 1971 at BBN, Ray Tomlinson combined features of two pre-Internet programs, SNDMSG and CPYNET, to send the first email. In doing so, he condemned all of us to endless hours in a sisyphisian effort to get our inboxes under control.  One by one, electronic implementations of the other ways of communicating came along, as shown in Table 1.
+Most electronic communication and collaboration tools have evolved from the real world. Mail was the first to make the leap from real world to online when, in 1971 at BBN, Ray Tomlinson combined features of two pre-Internet programs, SNDMSG and CPYNET, to send the first email. In doing so, he condemned all of us to endless hours in a sisyphisian effort to get our inboxes under control.  One by one, electronic implementations of the other ways of communicating came along, as shown in Table 1.
 
 Real world	Electronic	Characteristics	Product
 Mail	Email	Persistent messaging	Exchange
