@@ -2,42 +2,79 @@
 
 ## Collaboration Silos
 
-Traditionally, our collaboration tools have been divided into silos based on the mode of communication. In the Microsoft space, we've used Outlook and Exchange for persistent messaging,Skype for Business for real-time communication, and SharePoint to provide a workspace where we can share documents and other information.
+Traditionally, our collaboration tools have been divided into silos based on the mode of communication. In the Microsoft space, we've used Outlook and Exchange for persistent messaging, Skype for Business for real-time communication, and SharePoint to provide a place to share documents and other information.
 
 ![Collaboration silos](./CollaborationSilos.png)
 
 These tools work together to provide for our communications needs, whether they're real-time, message based, or documents and other content. They work well together, but they're still separate programs we have to run, and constantly flip between. As we do, the information is organized differently in each tool: most of us view email by date, Skype by person, and SharePoint by project or team. That's a lot of context switching. Of course we're all used to this, and probably don't even notice how much of our attention goes into it.
 
-Microsoft Teams brings all these modes of communication under a single "pane of glass", so we can focus on collaboration rather than collaboration tools. For certain kinds of communication - specifically anything involving a team of people - it's a lot easier than flipping between three different tools.
+Microsoft Teams aligns all these modes of communication under a single "pane of glass", so we can focus on collaboration rather than collaboration tools. For certain kinds of communication - specifically anything involving a team of people - it's a lot easier than juggling multiple tools.
 
 ## How did we get here?
 
-Most electronic communication and collaboration tools have evolved from the real world. Mail was the first to make the leap from real world to online when, in 1971 at BBN, Ray Tomlinson combined features of two pre-Internet programs, SNDMSG and CPYNET, to send the first email. In doing so, he condemned all of us to endless hours of sisyphisian effort to get our inboxes under control.  One by one, electronic implementations of the other ways of communicating came along, as shown in Table 1.
+Most electronic communication and collaboration tools have evolved from the real world. Mail was the first to make the leap from real world to online when, in 1971 at BBN, Ray Tomlinson combined features of two pre-Internet programs, SNDMSG and CPYNET, to send the first email. One by one, electronic implementations of the other ways of communicating came along, as shown in the table below.
 
-| Real world | Electronic	| Characteristics | Product |
+<table>
 
-| --- |:---:| ---:|
+<tr><th>Real world</th><th>Electronic</th><th>Characteristics</th><th>Product</th></tr>
 
-| Mail | Email | Persistent messaging | Exchange |
+<tr><td>Mail</td><td>Email</td><td>Persistent messaging</td><td>Exchange</td></tr>
 
-| Telephone, telegraph, pagers | Chat, voice, video, conferencing | Real-time communication | Skype for Business |
+<tr><td>Telephone, telegraph, pagers</td><td>Chat, voice, video, conferencing</td><td>Real-time communication</td><td>Skype for Business</td></tr>
+<tr><td>Paper: files, documents, pages, bulletin boards, newspapers</td><td>Shared workspaces</td><td>Shared storage and presentation</td><td>SharePoint</td></tr>
 
-| Paper: files, documents, pages, bulletin boards, newspapers |Shared workspaces | Shared storage and presentation | SharePoint |
+</table>
 
-This led to a world where our collaboration products all had real-world metaphors, with their incumbent limitations. In the Microsoft world, Exchange gave us persistent messages, Skype handled real-time communication, and SharePoint provided shared workspaces. Meanwhile, back in the real world, teams of people needed all these things, and juggled all these tools to get their work done.
+This led to a world where our collaboration products are metaphors for things in real world, along with their incumbent limitations.
 
-Having to juggle three or more tools isn't ideal but it's not horrible. Microsoft made it easier by integrating both Lync/Skype and SharePoint with the Exchange client program Outlook, so you could view files, emails, and archived Skype conversations all in one place. The fatal flaw, really, is the way these tools organized information.
-
-Like their real-world forebears, email and real-time communication tools are organized by _recipient_; that is, communications are delivered to a person or a group of people sharing an inbox or other endpoint. That leads us immediately to chaos, where communications from everywhere about every topic lands in a big heap on the doorstep. That's why email is so painful! Years ago I gave up trying to separate my email into folders by topic, and turned from "filer" to "piler", so now I rely on search when I need to find an email/needle in my inbox/haystack.
+Like their real-world forebears, email and real-time communication tools are organized by _recipient_; that is, communications are delivered to a person or a group of people sharing an inbox or Skype identity. If that recipient is a modern information worker, this soon leads to chaos, as communications from everywhere about every topic piles up in a big heap on the doorstep. No wonder keeping up with email is such a sisyphean effort! 
 
 Shared workspaces are different because they're organized by _topic_ rather than by recipient. Let's share everything about Project X here, and everything about Topic Y over there. You might end up with a big heap of information, but it won't be random, it will all be related to the topic of the shared workspace in some way, which is a big help!
 
-Teams, and other tools like it, are the first to really combine all these modes of communication. Together, the three modes end up looking like a shared workspace which allows persistent and real-time communications.
+## A new generation of collaboration tools
 
-OK SO TEAMS IS WONDERFUL, BUT WHAT DOES THAT HAVE TO DO WITH SHAREPOINT?
+Teams, and other tools like it, align all forms of communication to topics instead of individual people. This has a number of benefits:
 
-Well, SharePoint was designed to provide topic-focused shared workspaces, so of all the amazing stuff behind Teams, SharePoint reflects Teams' structure the best. 
+* When you're focused on a task, everything you need is likely to be in the same place: messages, meetings, notes, documents, are all in the same place, along with immediate real-time access to teammates who are online
+* You can work "in the open", eliminating the need for extra emails. For example, when you upload a document to Teams, a notification is automatically shown in the channel so everybody knows about it
+* The team can have a conversation right in the channel about the information there, eliminating the need to send links to information into Outlook or Skype (or worse, to attach duplicate copies)
+
+Working day to day in Teams feels a lot more streamlined, and is a welcome change from the traditional tool set.
+
+## So how does this relate to SharePoint?
+
+Both Teams and SharePoint team sites are organized by topic, project, organization, or some other focal point for a team of people. Hence, in any given organization, Teams and channels will often follow a similar structure to SharePoint team and project sites.
+
+In fact, this is inherent in the design. Every Microsoft Team automatically has a modern SharePoint team associated with it; that's where channel documents are stored. Each channel is associated with a folder in the SharePoint site's document library. In addition, files sent between users outside of a Teams channel are stored in the sender's OneDrive for Business folder.
+
+![Team channel files are stored in SharePoitn folders](./ChannelsAndFolders.png)
+
+As [Mark Kashman](https://twitter.com/mkashman) pointed out in [this recent Teams on Air episode](https://techcommunity.microsoft.com/t5/SharePoint-Blog/Teams-on-Air-replay-Microsoft-Teams-plus-SharePoint-in-Office/ba-p/183257), there are a number of advantages to storing Teams documents in SharePoint and OneDrive for Business:
+
+* The OneDrive sync client works  on Windows or Mac, so it's easy to sync all the files for a Team
+* Document co-authoring and and the online versions of Office applications depend on two special protocols ([WOPI](https://msdn.microsoft.com/en-us/library/hh641756(v=office.12).aspx) and [FSSHTTP](https://msdn.microsoft.com/en-us/library/dd956775(v=office.12).aspx)); since they're built into SharePoint and OneDrive, they also work in Teams
+* SharePoint provides previews for more than 270 file types, which are displayed directly in the Teams file tab
+* SharePoint and OneDrive have comprehensive data governance and compliance features, so Teams documents are protected as well. These include:
+   * Automatic classification and labelling
+   * Data loss prevention
+   * Document retention policies, disposition review, and event-baed retention
+   * eDiscovery and legal holds
+* Files are discoverable in Delve and SharePoint search
+
+Users don't have to leave Teams to work with their files; they appear in the Files tab. There's an "Open in SharePoint" option that brings you right into the SharePoint site.
+
+![Files tab](./ChannelFiles.png)
+
+You can also keep a file open in a tab.
+
+![Document in a tab](./ChannelDoc.png))
+
+## SharePoint News in Teams
 
 
-Mail and real-time are focused on senders and receivers
-Only the 
+
+
+
+## Adding Teams to a SharePoint Team site
+
+You can even [add a Team](https://techcommunity.microsoft.com/t5/Microsoft-Teams/How-to-connect-a-quot-Team-quot-to-a-quot-Group-quot/td-p/27861) to an existing SharePoint team site, as long as it's [modern](https://techcommunity.microsoft.com/t5/SharePoint-Blog/What-is-Modern-SharePoint-and-Why-Should-I-care/ba-p/161941) (actually you're adding the Team to the site's Office 365 Group). Soon it will be possible to add a Group to a classic SharePoint Team site, so those will be able to have Teams as well.
