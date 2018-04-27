@@ -15,9 +15,13 @@ Microsoft Teams brings all these modes of communication under a single "pane of 
 Most electronic communication and collaboration tools have evolved from the real world. Mail was the first to make the leap from real world to online when, in 1971 at BBN, Ray Tomlinson combined features of two pre-Internet programs, SNDMSG and CPYNET, to send the first email. In doing so, he condemned all of us to endless hours of sisyphisian effort to get our inboxes under control.  One by one, electronic implementations of the other ways of communicating came along, as shown in Table 1.
 
 | Real world | Electronic	| Characteristics | Product |
+
 | --- |:---:| ---:|
+
 | Mail | Email | Persistent messaging | Exchange |
+
 | Telephone, telegraph, pagers | Chat, voice, video, conferencing | Real-time communication | Skype for Business |
+
 | Paper: files, documents, pages, bulletin boards, newspapers |Shared workspaces | Shared storage and presentation | SharePoint |
 
 This led to a world where our collaboration products all had real-world metaphors, with their incumbent limitations. In the Microsoft world, Exchange gave us persistent messages, Skype handled real-time communication, and SharePoint provided shared workspaces. Meanwhile, back in the real world, teams of people needed all these things, and juggled all these tools to get their work done.
