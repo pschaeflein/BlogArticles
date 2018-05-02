@@ -53,7 +53,7 @@ As [Mark Kashman](https://twitter.com/mkashman) pointed out in [this recent Team
 
 * The OneDrive sync client works  on Windows or Mac, so it's easy to sync all the files for a Team
 * Document co-authoring and and the online versions of Office applications depend on two special protocols ([WOPI](https://msdn.microsoft.com/en-us/library/hh641756(v=office.12).aspx) and [FSSHTTP](https://msdn.microsoft.com/en-us/library/dd956775(v=office.12).aspx)); since they're built into SharePoint and OneDrive, they also work in Teams
-* SharePoint provides previews for more than [300 file types](???), which are displayed directly in the Teams file tab
+* SharePoint provides previews for more than [300 file types](https://techcommunity.microsoft.com/t5/OneDrive-Blog/New-File-Viewers-for-OneDrive-SharePoint-and-Teams/ba-p/189182), which are displayed directly in the Teams file tab
 * SharePoint and OneDrive have comprehensive data governance and compliance features, so Teams documents are protected as well. These include:
    * Automatic classification and labelling
    * Data loss prevention
@@ -67,7 +67,7 @@ Users don't have to leave Teams to work with their files; they appear in the Fil
 
 ## SharePoint Pages in Teams
 
-It's also possible to add SharePoint pages as tabs in Teams. This provides a much easier approach to building tabs compared with the [typical approach](???) of building a custom website from scratch. All the information on a team site home page can appear there, providing the best of both SharePoint and Teams in the same user interface.
+It's also possible to add SharePoint pages as tabs in Teams. This provides a much easier approach to building tabs compared with the [typical approach(https://github.com/OfficeDev/TrainingContent/blob/master/Teams/01%20Tabs/Lab.md of building a custom website from scratch. All the information on a team site home page can appear there, providing the best of both SharePoint and Teams in the same user interface.
 
 ![Site in Teams](./SiteInTeams.png)
 
@@ -75,16 +75,34 @@ It's also possible to put a whole document in a tab. This can be useful, for exa
 
 ![Document in a tab](./ChannelDoc.png))
 
-## SharePoint News in Teams
+## Conversations and News
 
-There have been a number of (mostly failed) attempts at bringing conversations into SharePoint. Discussion lists and news feeds were part of the product; a number of 3rd party offerings have worked to address this as well. Many of the more successful 3rd party offerings focus on the ["outer loop"](???) of communication - that is, broader corporate communication.
+There have been a number of (mostly failed) attempts at bringing conversations into SharePoint. Discussion lists and news feeds were part of SharePoint but never caught on (perhaps because of usability challenges with discussion lists and immediate backpedaling by Microsoft on SharePoint Social). A number of 3rd party offerings have worked to address this as well. Many of the more successful 3rd party offerings focus on the ["outer loop"](https://www.metalogix.com/blog/microsoft-365-teamwork-inner-outer-loop) of communication - that is, broader corporate communication. Yammer is the tool of choice for this within the Office 365 suite; perhaps next year I'll be able to post a similar article about Yammer integration but so far it's not nearly as extensive as what we have with Teams and SharePoint.
 
-For the "inner loop", Teams puts the conversation on center stage, which makes a lot of sense; SharePoint augments this with documents and other shared information. 
+For the "inner loop", Teams puts the conversation on center stage, which makes a lot of sense; SharePoint augments this with documents and other shared information. In fact, you can even (finally!) have a conversation about a document directly.
 
-But what about team news that transcends the conversation? Perhaps a new phase of a project is starting, or you want to highlight a success. Those things could easily be lost in the Teams conversation thread, but SharePoint news is a perfect vehicle for those kinds of messages.
+![Teams document conversation](DocumentConversation.png)
 
-Modern SharePoint sites include a light-weight publishing system for news pages. These pages bubble up on web parts, in Hub sites, on the SharePoint Home page, in the SharePoint mobile app, and now in Teams as well. When a news item is posted, it's ???? 
+The same conversation is shown in the channel along with a link to the document, so people can't miss it.
 
-## Adding Teams to a SharePoint Team site
+![Teams document conversation in Channel](DocumentConversationChannel.png)
 
-You can even [add a Team](https://techcommunity.microsoft.com/t5/Microsoft-Teams/How-to-connect-a-quot-Team-quot-to-a-quot-Group-quot/td-p/27861) to an existing SharePoint team site, as long as it's [modern](https://techcommunity.microsoft.com/t5/SharePoint-Blog/What-is-Modern-SharePoint-and-Why-Should-I-care/ba-p/161941) (actually you're adding the Team to the site's Office 365 Group). Soon it will be possible to add a Group to a classic SharePoint Team site, so those will be able to have Teams as well.
+But what about team news that transcends the conversation? Perhaps a new phase of a project is starting, or you want to highlight a success. Those things could easily be lost in the Teams conversation thread, so SharePoint news is a perfect vehicle for those kinds of messages.
+
+Modern SharePoint sites include a light-weight publishing system for news pages. These pages bubble up on web parts, in Hub sites, on the SharePoint Home page, in the SharePoint mobile app, and now in Teams as well. When a news item is posted, it's also announced right in the channel. 
+
+![SharePoint News in Channel](ChannelNews.png)
+
+From there, it's easy to add the SharePoint news archive as a tab, so the news stories are never more than a click away from the channel.
+
+![SharePoint News Archive in Channel](NewsArchiveTab.png)
+
+## Making the Switch
+
+Hopefully by now you're getting the idea that Teams and SharePoint are indeed better together, but how do you get there?
+
+Well if you've got a Team, you're already using SharePoint. Try adding tabs, news, and all the rest to enhance the experience!
+
+If you've got a SharePoint team site, then you can easily add Teams as well. For a while now it's been possible to [add a Team](https://techcommunity.microsoft.com/t5/Microsoft-Teams/How-to-connect-a-quot-Team-quot-to-a-quot-Group-quot/td-p/27861) to a [modern](https://techcommunity.microsoft.com/t5/SharePoint-Blog/What-is-Modern-SharePoint-and-Why-Should-I-care/ba-p/161941) team site (actually you're adding the Team to the site's Office 365 Group). But now it's even possible to [add an Office 365 Group and Team to a classic SharePoint team site](https://techcommunity.microsoft.com/t5/SharePoint-Blog/Rolling-out-tenant-admin-tools-to-connect-existing-SharePoint/ba-p/188750)!
+
+There's no reason to be left out - please try it out and let us know how it's working for you in the comments!
