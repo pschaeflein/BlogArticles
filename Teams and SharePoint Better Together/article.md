@@ -27,7 +27,7 @@ Most electronic communication and collaboration tools have evolved from the real
 
 This led to a world where our collaboration products are metaphors for things in real world, along with their incumbent limitations.
 
-Like their real-world forebears, email and real-time communication tools are organized by _recipient_; that is, communications are delivered to a person or a group of people sharing an inbox or Skype identity. If that recipient is a modern information worker, this soon leads to chaos, as communications from everywhere about every topic piles up in a big heap on the doorstep. No wonder keeping up with email is such a sisyphean effort! 
+Like their real-world forebears, email and real-time communication tools are organized by _recipient_; that is, communications are delivered to a person or a group of people sharing an inbox or Skype identity. If that recipient is a modern information worker, this soon leads to chaos, as communications from everywhere about every topic piles up in a big heap on the doorstep. No wonder keeping up with email is such a Sisyphean effort! 
 
 Shared workspaces are different because they're organized by _topic_ rather than by recipient. Let's share everything about Project X here, and everything about Topic Y over there. You might end up with a big heap of information, but it won't be random, it will all be related to the topic of the shared workspace in some way, which is a big help!
 
@@ -47,7 +47,7 @@ Both Teams and SharePoint team sites are organized by topic, project, organizati
 
 In fact, this is inherent in the design. Every Microsoft Team automatically has a modern SharePoint team site associated with it; that's where channel documents are stored. Each channel is associated with a folder in the SharePoint site's document library. In addition, files sent between users outside of a Teams channel are stored in the sender's OneDrive for Business folder.
 
-![Team channel files are stored in SharePoitn folders](./ChannelsAndFolders.png)
+![Team channel files are stored in SharePoint folders](./ChannelsAndFolders.png)
 
 As [Mark Kashman](https://twitter.com/mkashman) pointed out in [this recent Teams on Air episode](https://techcommunity.microsoft.com/t5/SharePoint-Blog/Teams-on-Air-replay-Microsoft-Teams-plus-SharePoint-in-Office/ba-p/183257), there are a number of advantages to storing Teams documents in SharePoint and OneDrive for Business:
 
@@ -57,7 +57,7 @@ As [Mark Kashman](https://twitter.com/mkashman) pointed out in [this recent Team
 * SharePoint and OneDrive have comprehensive data governance and compliance features, so Teams documents are protected as well. These include:
    * Automatic classification and labelling
    * Data loss prevention
-   * Document retention policies, disposition review, and event-baed retention
+   * Document retention policies, disposition review, and event-based retention
    * eDiscovery and legal holds
 * Files are discoverable in Delve and SharePoint search
 
