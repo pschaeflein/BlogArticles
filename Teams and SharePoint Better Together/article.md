@@ -36,7 +36,7 @@ Shared workspaces are different because they're organized by _topic_ rather than
 Teams, and other tools like it, align all forms of communication to topics instead of individual people. This has a number of benefits:
 
 * When you're focused on a task, everything you need is likely to be in the same place: messages, meetings, notes, documents, are all in the same place, along with immediate real-time access to teammates who are online
-* You can work "in the open", eliminating the need for extra emails. For example, when you upload a document to Teams, a notification is automatically shown in the channel so everybody knows about it
+* You can work "in the open", eliminating the need for extra emails. For example, when you upload a document to Teams, a notification is automatically shown in the channel so everybody knows about it; no need to send an email announcement, or an email asking where the document is.
 * The team can have a conversation right in the channel about the information there, eliminating the need to send links to information into Outlook or Skype (or worse, to attach duplicate copies)
 
 Working day to day in Teams feels a lot more streamlined, and is a welcome change from the traditional tool set.
@@ -45,7 +45,7 @@ Working day to day in Teams feels a lot more streamlined, and is a welcome chang
 
 Both Teams and SharePoint team sites are organized by topic, project, organization, or some other focal point for a team of people. Hence, in any given organization, Teams and channels will often follow a similar structure to SharePoint team and project sites.
 
-In fact, this is inherent in the design. Every Microsoft Team automatically has a modern SharePoint team associated with it; that's where channel documents are stored. Each channel is associated with a folder in the SharePoint site's document library. In addition, files sent between users outside of a Teams channel are stored in the sender's OneDrive for Business folder.
+In fact, this is inherent in the design. Every Microsoft Team automatically has a modern SharePoint team site associated with it; that's where channel documents are stored. Each channel is associated with a folder in the SharePoint site's document library. In addition, files sent between users outside of a Teams channel are stored in the sender's OneDrive for Business folder.
 
 ![Team channel files are stored in SharePoitn folders](./ChannelsAndFolders.png)
 
@@ -53,7 +53,7 @@ As [Mark Kashman](https://twitter.com/mkashman) pointed out in [this recent Team
 
 * The OneDrive sync client works  on Windows or Mac, so it's easy to sync all the files for a Team
 * Document co-authoring and and the online versions of Office applications depend on two special protocols ([WOPI](https://msdn.microsoft.com/en-us/library/hh641756(v=office.12).aspx) and [FSSHTTP](https://msdn.microsoft.com/en-us/library/dd956775(v=office.12).aspx)); since they're built into SharePoint and OneDrive, they also work in Teams
-* SharePoint provides previews for more than 270 file types, which are displayed directly in the Teams file tab
+* SharePoint provides previews for more than [300 file types](???), which are displayed directly in the Teams file tab
 * SharePoint and OneDrive have comprehensive data governance and compliance features, so Teams documents are protected as well. These include:
    * Automatic classification and labelling
    * Data loss prevention
@@ -65,15 +65,25 @@ Users don't have to leave Teams to work with their files; they appear in the Fil
 
 ![Files tab](./ChannelFiles.png)
 
-You can also keep a file open in a tab.
+## SharePoint Pages in Teams
+
+It's also possible to add SharePoint pages as tabs in Teams. This provides a much easier approach to building tabs compared with the [typical approach](???) of building a custom website from scratch. All the information on a team site home page can appear there, providing the best of both SharePoint and Teams in the same user interface.
+
+![Site in Teams](./SiteInTeams.png)
+
+It's also possible to put a whole document in a tab. This can be useful, for example, to share a key presentation or to track information in a spreadsheet that's easily accessed by the whole team.
 
 ![Document in a tab](./ChannelDoc.png))
 
 ## SharePoint News in Teams
 
+There have been a number of (mostly failed) attempts at bringing conversations into SharePoint. Discussion lists and news feeds were part of the product; a number of 3rd party offerings have worked to address this as well. Many of the more successful 3rd party offerings focus on the ["outer loop"](???) of communication - that is, broader corporate communication.
 
+For the "inner loop", Teams puts the conversation on center stage, which makes a lot of sense; SharePoint augments this with documents and other shared information. 
 
+But what about team news that transcends the conversation? Perhaps a new phase of a project is starting, or you want to highlight a success. Those things could easily be lost in the Teams conversation thread, but SharePoint news is a perfect vehicle for those kinds of messages.
 
+Modern SharePoint sites include a light-weight publishing system for news pages. These pages bubble up on web parts, in Hub sites, on the SharePoint Home page, in the SharePoint mobile app, and now in Teams as well. When a news item is posted, it's ???? 
 
 ## Adding Teams to a SharePoint Team site
 
