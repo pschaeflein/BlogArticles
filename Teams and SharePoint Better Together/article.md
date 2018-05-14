@@ -65,7 +65,7 @@ Users don't have to leave Teams to work with their files; they appear in the Fil
 
 ![Files tab](./ChannelFiles.png)
 
-## SharePoint Pages in Teams
+## SharePoint Pages and Web Parts in Teams
 
 It's also possible to add SharePoint pages as tabs in Teams. This provides a much easier approach to building tabs compared with the [typical approach(https://github.com/OfficeDev/TrainingContent/blob/master/Teams/01%20Tabs/Lab.md of building a custom website from scratch. All the information on a team site home page can appear there, providing the best of both SharePoint and Teams in the same user interface.
 
@@ -74,6 +74,8 @@ It's also possible to add SharePoint pages as tabs in Teams. This provides a muc
 It's also possible to put a whole document in a tab. This can be useful, for example, to share a key presentation or to track information in a spreadsheet that's easily accessed by the whole team.
 
 ![Document in a tab](./ChannelDoc.png))
+
+At the Build conference last week it was announced that this will go to even another level of integration, where SharePoint Framework web parts can be added as tabs as part of Microsoft Teams applications. That will make them more configurable, and users can add an app to their team and get the tab without any additional work. App builders will no longer need to figure out where to host custom tabs; why not host them in the underlying SharePoint site which is ready and waiting?
 
 ## Conversations and News
 
