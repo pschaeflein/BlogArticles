@@ -57,9 +57,9 @@ Here's the Funko site script:
 
 As you can see, a Site Script is made up of actions. What may not be obvious is that these actions are idempotent - that is, they can be run again and again and the result will be the same. Therefore, you can re-apply site scripts after the fact.
 
-This site script has three actions: setSiteLogo, applyTheme, and triggerFlow. Since then, they've added more actions and some things I did manually could be included, such as installing the custom SPFx solution and adding views to the Pages library.
+This site script has three actions: setSiteLogo, applyTheme, and triggerFlow. Since then, the SharePoint team has added more actions and some things I did manually could be included, such as installing the custom SPFx solution and adding views to the Pages library.
 
-In the repo, you'll find this script embedded into the [Install-SampleSiteDesign.ps1](https://github.com/SharePoint/sp-dev-site-scripts/blob/master/samples/site-azure-function/Install-SampleSiteDesign.ps1) PowerShell script. That allowed me to insert parameters at runtime for use in development, staging, and production environments. More on that in Step 4!
+In the repo, you'll find this script embedded into the [Install-SampleSiteDesign.ps1](https://github.com/SharePoint/sp-dev-site-scripts/blob/master/samples/site-azure-function/Install-SampleSiteDesign.ps1) PowerShell script. That allowed me to insert parameters at runtime for use in different tenants, or for development, staging, and production use. More on that in Step 4!
 
 The sections that follow will explain the major steps in installing the solution and highlight useful concepts along the way.
 
@@ -69,7 +69,7 @@ This solution uses the Hub Links List and Hub Box Button web parts from the [Lin
 
 ![Tenant Scoped](tenant-deploy-app-catalog.png)
 
-You could, of course, skip this step and just remove the web parts from the Azure function that sets up the home page. But that's a topic for the next section.
+You could, of course, skip this step and just remove the web parts from the Azure function that sets up the home page. But then you'd miss out on these cool, open source web parts!
 
 ## Step 2: Set up the Flow and Azure Function
 
@@ -79,12 +79,12 @@ This solution is based on the documented process for [Calling the PnP Provisioni
 
 * In the section, "Provision the SPFx solution", install the Links and Handlebars web parts instead of the ones in the article. (You may have already done that!)
 * You can skip the section, "Create a PnP Provisioning template" as the template information is already in this repo
-* In the section, "Finish the Azure Function", add the Azure Function code from this repo instead of the sample in the article. Make sure you set up the SPO_AppId and SPO_AppSecret application settings as explained in Step 4.
+* In the section, "Finish the Azure Function", add the [Azure Function code](https://github.com/SharePoint/sp-dev-site-scripts/blob/master/samples/site-azure-function/SetupDepartmentSite/run.ps1) from this repo instead of the sample in the article. Make sure you set up the SPO_AppId and SPO_AppSecret application settings as explained in Step 4.
 * You can skip the section "Create the Site Design" for now, as this is handled by the Install-SampleSiteDesign.ps1 PowerShell script in this repo
 
 The Azure Function code is a single file, [Run.ps1](https://github.com/SharePoint/sp-dev-site-scripts/blob/master/samples/site-azure-function/SetupDepartmentSite/run.ps1) which uses [PnP PowerShell](https://docs.microsoft.com/en-us/powershell/sharepoint/sharepoint-pnp/sharepoint-pnp-cmdlets?view=sharepoint-ps) to set up the home page. The [other article](https://docs.microsoft.com/en-us/sharepoint/dev/declarative-customization/site-design-pnp-provisioning) called for using a Provisioning Template, which is a great approach. A Provisioning Template is an XML structure that PnP PowerShell can use to provision site content. 
 
-Personally I like to code each thing I'm provisioning rather than use a template, and you'll see that here. One reason for this is so I can set web part properties programmatically; sometimes that's necessary to insert a list ID or something else unique to the target site. Another is just personal preference of keeping everything in my PowerShell script.
+Personally I like to code each thing I'm provisioning rather than use a template, and you'll see that here. One reason for this is it makes it easy to set web part properties programmatically; sometimes that's necessary to insert a list ID or something else unique to the target site. Another is just a personal preference to keep everything in my PowerShell script.
 
 For example, here's the code to sec up the 2nd section on the home page, which has two columns with a news feed on the left and three of the custom web parts on the right.
 
@@ -149,7 +149,7 @@ For example, you might call
       -ThemeName "DeptThemeSample" `
       -FlowTriggerUrl "https://(URL from step 14 of the Site Design PnP Provisioning article)"
 
-Notice that the site script is right there in the PowerShell script. It uses [here-strings](https://blogs.technet.microsoft.com/heyscriptingguy/2015/12/31/powertip-use-here-strings-with-powershell/) which allow the JSON to span many lines; it's arranged so the JSON can just be pasted in. The here-string has double quotes, which allows variable substitution, such as inserting the site logo URL from the parameters:
+Notice that the site script is right there in the PowerShell script. It uses [here-strings] (with @ symbols around the quotation marks)(https://blogs.technet.microsoft.com/heyscriptingguy/2015/12/31/powertip-use-here-strings-with-powershell/) which allow the JSON to span many lines; it's arranged so the JSON can just be pasted in. The here-string has double quotes, which allows variable substitution, such as inserting the site logo URL from the parameters:
 
 ```JSON
         {
@@ -174,7 +174,7 @@ Notice that the Add-SPOSiteDesign command is where you define the web template t
 
 You can restrict who can use a Site Design with the [Grant-SPOSiteDesignRights](https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/Grant-SPOSiteDesignRights?view=sharepoint-ps) PowerShell cmdlet.
 
-With the new site design in place, you should be able to create a Communications Site from SharePoint Home and the site design should be displayed. The site script triggers the Flow, which adds to the Azure Queue, which calls the Azure Function to populate the site home page.
+With the new site design in place, you should be able to create a Communications Site from SharePoint Home and the Site Design should be an option. The site script triggers the Flow, which adds to the Azure Queue, which calls the Azure Function to populate the site home page.
 
 ## Reference
 
