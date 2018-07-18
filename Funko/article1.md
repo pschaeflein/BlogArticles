@@ -1,27 +1,26 @@
 # Swooping into SharePoint Site Designs
 
-Several months ago, out in Everett, Washington, a group of SharePoint MVPs gathered to remake an intranet for international toy company Funko, Inc. The result was, well, a new Intranet, and the [SharePoint Swoop](https://techcommunity.microsoft.com/t5/Microsoft-SharePoint-Blog/SharePoint-Swoop-the-intranet-makeover-show/ba-p/186892) reality TV show!
+Several months ago, out in Everett, Washington, a group of SharePoint MVPs gathered to remake an intranet for international toy company Funko, Inc. The result was, of course, a new Intranet, and the [SharePoint Swoop](https://techcommunity.microsoft.com/t5/Microsoft-SharePoint-Blog/SharePoint-Swoop-the-intranet-makeover-show/ba-p/186892) reality TV show!
 
-This is a story from behind the scenes,in which I got to make their work reusable with SharePoint Site Designs and Scripts. It was quite a thrill to be involved, even from afar (I was in Boston, but what's a few thousand miles when you have modern collaboration tools?) I'll start with the story, then dig into the technical details.
+This is a story from behind the scenes,in which I got to make their work reusable with SharePoint Site Designs and Scripts. It was quite a thrill to be involved, even from afar! (I was in Boston, but what's a few thousand miles when you have modern collaboration tools?) I'll start with the story, then dig into the details of Site Designs and Scripts.
 
 ## SharePoint Swoop
 
-SharePoint Swoop is a new kind of reality TV show. Makeover shows about physical things like fashion, homes, and restaurants have become hackneyed! It's make over our digital experiences, and SharePoint Swoop does just that. And what could be more fun than to do it for [Funko](https://www.funko.com/), maker of exclusive collectibles including Pop! Vinyl licensed figures?
+SharePoint Swoop is a new kind of reality TV show. Makeover shows about physical things like fashion, homes, and restaurants have become hackneyed! It's time to make over our digital experiences, and SharePoint Swoop does just that. And what could be more fun than to do it for [Funko](https://www.funko.com/), maker of exclusive collectibles including Pop! Vinyl licensed figures?
 
 ![SharePoint Swoop](SPSwoop1.png)
 
 SharePoint MVPs 
+[Sue Hanley](https://twitter.com/susanhanley),
+[Laura Rogers](https://twitter.com/WonderLaura), and
 [Ben Nualin](https://twitter.com/bniaulin)
-,
-[Sue Hanley](https://twitter.com/susanhanley), and
-[Laura Rogers](https://twitter.com/WonderLaura)
 descended on Funko headquarters and set out to remake their Intranet in only three days.
 
 You can watch the series [here](https://aka.ms/SharePointSwoop) (binge watching encouraged!)
 
 ## The need for reuse
 
-With only three days, the team had to stay focused. Funko's product development team volunteered their department site for a remake, but what about the other Funko departments? Wouldn't it be nice if you could push a button and make sites for the other departments based on the same design? A button, well, like this:
+With only three days, the team had to stay focused. Funko's product development team volunteered their department site for a remake, but what about the other Funko departments? Wouldn't it be nice if you could push a button and make sites for the other departments based on the same design? Well here it is:
 
 ![Create Funko Department Site](NewFunkoSite.png)
 
@@ -29,18 +28,18 @@ Funko is a modern company, so naturally they wanted their Intranet to be built o
 
 ![picture of the provisioned site](SampleDeptSite.png)
 
-When a user pushes the button, the Site Design runs and creates the site with the desired structure. Although the feature hadn't even made preview status, with the help of [Sean Squires](https://twitter.com/iamseansquires) and [Vesa Juvonen](https://twitter.com/vesajuvonen), it was working before too long.
+When a user pushes the button, the Site Design runs and creates the site with the desired structure. Although Site DEsigns weren't yet released (even in preview), with the help of [Sean Squires](https://twitter.com/iamseansquires) and [Vesa Juvonen](https://twitter.com/vesajuvonen), it was all working before too long.
 
 ## Why Site Designs and Scripts?
 
 Site Designs have several advantages over previous site provisioning techniques, including:
 
 * They run server side, so they're faster than calling a client API's for each step of site creation
-* They're repeatable; run them again and again. When a site design is updated, just rerun it to bring the site up to the latest and greatest
+* They're repeatable, so you can run them again and again. When a site design is updated, just rerun it to bring the site up to the latest and greatest
 * They're governed by permissions; IT can control who can create sites from each design
-* A Site Design is made of Site _Scripts_; this allows reusing parts of a site structure among multiple site designs. For example, if several types of sites need a certain list and views, that can be put in a separate site script and reused across all the designs
+* A Site Design is made of _Site_ _Scripts_; this allows reusing parts of a site structure among multiple site designs. For example, if several types of sites need a certain list and views, that can be put in a separate site script and reused across all the designs
 
-Site scripts are JSON files that contain use _actions_, which can set up almost anything you'd want in a new site:
+Site scripts are JSON files that contain _actions_, which can set up almost anything you'd want in a new site:
 
 #### Site Settings
 * addPrincipalToSPGroup
@@ -73,13 +72,13 @@ Site scripts are JSON files that contain use _actions_, which can set up almost 
 * associateListViewCommandSet
 * associateFieldCustomizer 
 
-If something is missing from this list, it's possible to trigger an Azure Function to do the work using a remote API such as [Graph API](https://developer.microsoft.com/en-us/graph/graph-explorer) or [PnP PowerShell](https://docs.microsoft.com/en-us/powershell/sharepoint/sharepoint-pnp/sharepoint-pnp-cmdlets?view=sharepoint-ps). This also allows IT shops to make a smooth transition from remote provisioning techniques like PnP PowerShell into Site Designs; portions of the provisioning process can be transitioned to the Site Scripts over time.
+If something is missing from this list, it's possible to trigger an Azure Function to do the work using a remote API such as [Graph API](https://developer.microsoft.com/en-us/graph/graph-explorer) or [PnP PowerShell](https://docs.microsoft.com/en-us/powershell/sharepoint/sharepoint-pnp/sharepoint-pnp-cmdlets?view=sharepoint-ps). This also allows IT shops to make a smooth transition from remote provisioning techniques like PnP PowerShell into Site Designs; portions of the provisioning process can be transitioned to Site Scripts over time.
 
-By the way, Site Designs aren't just useful when sites are created. They can be applied and re-applied at any time using PowerShell or a REST API. And soon it will be possible to run them when sites are added to a Hub, so Hub-specific settings and content can be added to the site.
+By the way, Site Designs aren't just useful when sites are created. They can be applied and re-applied at any time using PowerShell or a REST API. And soon it will be possible to run them when sites are added to a Hub, so Hub-specific settings and content can be added to each site.
 
 ## Technical Details
 
-This article won't go into all the technical nitty-gritty; for that please refer to [Building SharePoint Site Designs with Azure Functions](article2.md). It provides a walk-through of [the code](https://github.com/SharePoint/sp-dev-site-scripts/tree/master/samples/site-azure-function), along with installation instructions (yes you can use it on your Intranet too!)
+This article won't go into all the technical nitty-gritty; for that please refer to [Building SharePoint Site Designs with Azure Functions](article2.md). It provides a walk-through of [the code](https://github.com/SharePoint/sp-dev-site-scripts/tree/master/samples/site-azure-function), along with installation instructions (yes the code is freely available so you can use it on your Intranet too!)
 
 You will learn:
 

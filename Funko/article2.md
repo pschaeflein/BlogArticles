@@ -2,7 +2,7 @@
 
 This article is the sequel to [Swooping into SharePoint Site Designs](article1.md), in which I related my experience working behind the scenes on the world's first SharePoint reality show! This time I'll explain [the code](https://github.com/SharePoint/sp-dev-site-scripts/tree/master/samples/site-azure-function) so you can build similar solutions if you so desire.
 
-[The sample] shows how to build a site design and script for a simple department site, as created in the [SharePoint Swoop video](https://techcommunity.microsoft.com/t5/Microsoft-SharePoint-Blog/SharePoint-Swoop-the-intranet-makeover-show/ba-p/186892). A team of experts worked with [Funko Toys](https://www.funko.com/) to redesign their Intranet site in just three days. This site design was developed behind the scenes to provide a template for Funko's department sites.
+The sample shows how to build a site design and script for a simple department site, as created in the [SharePoint Swoop video](https://techcommunity.microsoft.com/t5/Microsoft-SharePoint-Blog/SharePoint-Swoop-the-intranet-makeover-show/ba-p/186892). A team of experts worked with [Funko Toys](https://www.funko.com/) to redesign their Intranet site in just three days. This site design was developed behind the scenes to provide a template for Funko's department sites.
 
 The sample shows how to:
 
@@ -59,7 +59,7 @@ As you can see, a Site Script is made up of actions. What may not be obvious is 
 
 This site script has three actions: setSiteLogo, applyTheme, and triggerFlow. Since then, they've added more actions and some things I did manually could be included, such as installing the custom SPFx solution and adding views to the Pages library.
 
-In the repo, you'll find this script embedded into the Install-SampleSiteDesign.ps1 PowerShell script. That allowed me to insert parameters at runtime for use in development, staging, and production environments. More on that in Step 4!
+In the repo, you'll find this script embedded into the [Install-SampleSiteDesign.ps1](https://github.com/SharePoint/sp-dev-site-scripts/blob/master/samples/site-azure-function/Install-SampleSiteDesign.ps1) PowerShell script. That allowed me to insert parameters at runtime for use in development, staging, and production environments. More on that in Step 4!
 
 The sections that follow will explain the major steps in installing the solution and highlight useful concepts along the way.
 
