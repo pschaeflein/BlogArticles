@@ -1,34 +1,32 @@
 # Swooping into SharePoint Site Designs
 
-Several months ago, out in Everett, Washington, a group of SharePoint MVPs gathered to remake an intranet for international toy company Funko, Inc. The result was, of course, a new Intranet, and the [SharePoint Swoop](https://techcommunity.microsoft.com/t5/Microsoft-SharePoint-Blog/SharePoint-Swoop-the-intranet-makeover-show/ba-p/186892) reality TV show!
+Several months ago a group of SharePoint MVPs gathered to film a new kind of reality TV show and remake a company's Intranet. You may have seen it - [SharePoint Swoop](https://techcommunity.microsoft.com/t5/Microsoft-SharePoint-Blog/SharePoint-Swoop-the-intranet-makeover-show/ba-p/186892)!
 
-This is a story from behind the scenes,in which I got to make their work reusable with SharePoint Site Designs and Scripts. It was quite a thrill to be involved, even from afar! (I was in Boston, but what's a few thousand miles when you have modern collaboration tools?) I'll start with the story, then dig into the details of Site Designs and Scripts.
+This is a story from behind the scenes,in which I got to make their work reusable with SharePoint Site Designs and Scripts. It was quite a thrill to be involved, even though I wasn't there in person! I'll start with the story, then dig into the details of Site Designs and Scripts.
 
 ## SharePoint Swoop
 
-SharePoint Swoop is a new kind of reality TV show. Makeover shows about physical things like fashion, homes, and restaurants have become hackneyed! It's time to make over our digital experiences, and SharePoint Swoop does just that. And what could be more fun than to do it for [Funko](https://www.funko.com/), maker of exclusive collectibles including Pop! Vinyl licensed figures?
-
-![SharePoint Swoop](SPSwoop1.png)
+SharePoint Swoop is a new kind of reality TV show. Makeover shows about physical things like fashion, homes, and restaurants have become hackneyed! It's time to make over our digital experiences, and SharePoint Swoop does just that.
 
 SharePoint MVPs 
 [Sue Hanley](https://twitter.com/susanhanley),
 [Laura Rogers](https://twitter.com/WonderLaura), and
 [Ben Nualin](https://twitter.com/bniaulin)
-descended on Funko headquarters and set out to remake their Intranet in only three days.
+met with customer stakeholders and set out to remake their Intranet in only three days.
 
 You can watch the series [here](https://aka.ms/SharePointSwoop) (binge watching encouraged!)
 
 ## The need for reuse
 
-With only three days, the team had to stay focused. Funko's product development team volunteered their department site for a remake, but what about the other Funko departments? Wouldn't it be nice if you could push a button and make sites for the other departments based on the same design? Well here it is:
+With only three days, the team had to stay focused. A product development team volunteered their department site for a remake, but what about the other departments? Wouldn't it be nice if you could push a button and make sites for the other departments based on the same design? Well here it is:
 
-![Create Funko Department Site](NewFunkoSite.png)
+![Create Department Site](NewFunkoSite.png)
 
-Funko is a modern company, so naturally they wanted their Intranet to be built on Microsoft's modern Communication sites. They wanted their department sites to include a Hero web part at the top of the home page, initially without images loaded; below that they wanted news on the left and frequently needed links on the right.  They also wanted to set up an About page, and a custom view of the Pages library to facilitate page management. The resulting site looks like this (before adding content):
+Naturally the customer wanted to base the new Intranet on SharePoint's new modern sites. They wanted their department sites to be Communication sites that included a Hero web part at the top of the home page, initially without images loaded; below that they wanted news on the left and frequently needed links on the right.  They also wanted to set up an About page, and a custom view of the Pages library to facilitate page management. The resulting site looks like this (before adding content):
 
 ![picture of the provisioned site](SampleDeptSite.png)
 
-When a user pushes the button, the Site Design runs and creates the site with the desired structure. Although Site DEsigns weren't yet released (even in preview), with the help of [Sean Squires](https://twitter.com/iamseansquires) and [Vesa Juvonen](https://twitter.com/vesajuvonen), it was all working before too long.
+When a user pushes the button, the Site Design runs and creates the site with the desired structure. Although Site Designs weren't yet released (even in preview), with the help of [Sean Squires](https://twitter.com/iamseansquires) and [Vesa Juvonen](https://twitter.com/vesajuvonen), it was all working before too long.
 
 ## Why Site Designs and Scripts?
 

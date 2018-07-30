@@ -2,7 +2,7 @@
 
 This article is the sequel to [Swooping into SharePoint Site Designs](article1.md), in which I related my experience working behind the scenes on the world's first SharePoint reality show! This time I'll explain [the code](https://github.com/SharePoint/sp-dev-site-scripts/tree/master/samples/site-azure-function) so you can build similar solutions if you so desire.
 
-The sample shows how to build a site design and script for a simple department site, as created in the [SharePoint Swoop video](https://techcommunity.microsoft.com/t5/Microsoft-SharePoint-Blog/SharePoint-Swoop-the-intranet-makeover-show/ba-p/186892). A team of experts worked with [Funko Toys](https://www.funko.com/) to redesign their Intranet site in just three days. This site design was developed behind the scenes to provide a template for Funko's department sites.
+The sample shows how to build a site design and script for a simple department site, as created in the [SharePoint Swoop video](https://techcommunity.microsoft.com/t5/Microsoft-SharePoint-Blog/SharePoint-Swoop-the-intranet-makeover-show/ba-p/186892). A team of experts worked to redesign an Intranet site in just three days. This site design was developed behind the scenes to provide a template for all the company's department sites.
 
 The sample shows how to:
 
@@ -25,7 +25,7 @@ The home page includes a Hero web part at the top, initially without images load
 
 ## The Site Script
 
-Here's the Funko site script:
+Here's the site script:
 
 ```JSON
 {
@@ -113,7 +113,7 @@ One of the web parts has a link to the new About page, which is provisioned late
 
 ## Step 3: Install the SharePoint Theme
 
-The repo includes a PowerShell script, [Install-SampleTheme.ps1](https://github.com/SharePoint/sp-dev-site-scripts/blob/master/samples/site-azure-function/Install-SampleTheme.ps1), to create a custom site theme. You may want to make a new theme for your site, or you can stick with the Funko colors (which are close but not quite the same as the SharePoint colors).
+The repo includes a PowerShell script, [Install-SampleTheme.ps1](https://github.com/SharePoint/sp-dev-site-scripts/blob/master/samples/site-azure-function/Install-SampleTheme.ps1), to create a custom site theme. You may want to make a new theme for your site, or you can stick with the customer's colors (which are close but not quite the same as the SharePoint colors).
 
 For example, if you want to call your theme DeptThemeSample, run this:
 
