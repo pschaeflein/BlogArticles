@@ -1,8 +1,10 @@
 # Swooping into SharePoint Site Designs
 
-Several months ago a group of SharePoint MVPs gathered to film a new kind of reality TV show and remake a company's Intranet. You may have seen it - [SharePoint Swoop](https://techcommunity.microsoft.com/t5/Microsoft-SharePoint-Blog/SharePoint-Swoop-the-intranet-makeover-show/ba-p/186892)!
+A few months ago a group of SharePoint MVPs gathered to film a new kind of reality TV show and remake a company's Intranet. You may have seen it - [SharePoint Swoop](https://techcommunity.microsoft.com/t5/Microsoft-SharePoint-Blog/SharePoint-Swoop-the-intranet-makeover-show/ba-p/186892)!
 
 This is a story from behind the scenes,in which I got to make their work reusable with SharePoint Site Designs and Scripts. It was quite a thrill to be involved, even though I wasn't there in person! I'll start with the story, then dig into the details of Site Designs and Scripts.
+
+![SharePoint Swoop](./SPSwoop1.png)
 
 ## SharePoint Swoop
 
