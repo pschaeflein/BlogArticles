@@ -22,7 +22,7 @@ You can watch the series [here](https://aka.ms/SharePointSwoop) (binge watching 
 
 With only three days, the team had to stay focused. A product development team volunteered their department site for a remake, but what about the other departments? Wouldn't it be nice if you could push a button and make sites for the other departments based on the same design? Well here it is:
 
-![Create Department Site](NewFunkoSite.png)
+![Create Department Site](NewDeptSite.png)
 
 Naturally the customer wanted to base the new Intranet on SharePoint's new modern sites. They wanted their department sites to be Communication sites that included a Hero web part at the top of the home page, initially without images loaded; below that they wanted news on the left and frequently needed links on the right.  They also wanted to set up an About page, and a custom view of the Pages library to facilitate page management. The resulting site looks like this (before adding content):
 
