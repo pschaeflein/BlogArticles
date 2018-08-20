@@ -13,9 +13,10 @@ The problems came from (a) lack of clear swim lanes between SharePoint and the c
 
 * Modern is more locked down; there are clear "swim lanes" between the product and the customization. BUT people have the expectation they can do deep branding AND they also expect to need it. (SHOW screen shot of OOB publishing site circa 2007)
 
-## Limits to modern
+## Customization and Configuration
 
 Picture of what can and can't be customized on a modern SP page
+![Customization and Configuration of Modern SharePoint](./CommunicationSitePageRegions.png)
 
 ## The New Normal
 
