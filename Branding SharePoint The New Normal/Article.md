@@ -1,7 +1,9 @@
 # DRAFT
 # Branding SharePoint: The New Normal
 
-[Modern SharePoint](???) is catching on, and sites are looking better than ever right out of the box. With mobile-ready pages and easier editing, customers and partners are starting to ask for it. And as SharePoint 2019 brings the modern experience on premises, the demand is likely to appear just as it has online.
+LINKS
+
+[Modern SharePoint](https://bob1german.com/2018/02/09/what-is-modern-sharepoint-and-why-should-i-care/) is catching on, and sites are looking better than ever right out of the box. With mobile-ready pages and easier editing, customers and partners are starting to ask for it. And as SharePoint 2019 brings the modern experience on premises, the demand is likely to appear just as it has online.
 
 Yet even as sites look better than ever "out of the box", there are limitations on how they can be customized. Partners and customers who want to completely change the look sometimes run into these boundaries and get frustrated.
 
@@ -11,9 +13,10 @@ This article will explain what you can and can't customize on modern SharePoint 
 
 The story really began with SharePoint 2007, when Microsoft Content Management Server (MCMS) was "merged" into SharePoint. MCMS was based on a wonderful web content management (WCM) system called NCompass Resolution, and it allowed designers to build pretty much anything they could imagine. SharePoint introduced "Publishing Sites" which include most of the MCMS capabilities, such as the ability to start with a design composite (image) and make an editable page that looks exactly like it.
 
-Microsoft started to promote SharePoint as a general purpose WCM system for building any site, public or private. They worked hard to get customers to adopt the technology. Hawaiian Airlines was a well known case study of how SharePoint didn't have to look like SharePoint.
+![Out of the box publishing site, circa 2007](SP2007-PublishingSite.png)
+Out of the box publishing cite, circa 2007
 
-[??? SHOW HAWIIAN AIRLINES SITE]
+Microsoft started to promote SharePoint as a general purpose WCM system for building any site, public or private. They worked hard to get customers to adopt the technology. If you'd like to see some examples, check out [Top SharePoint Sites](http://www.topsharepoint.com/category/top-sites?r_sortby=highest_rated&r_orderby=desc); notice that they're mostly pretty old.
 
 While SharePoint never did capture more than a sliver of the already fragmented market for public-facing websites, it became the market leader for internally facing Intranet sites. Its flexibility led to an assumption that you could hire designers and developers to build any imaginable site from scratch, and it would benefit from SharePoint's powerful document management, search, security, and other enterprise features.
 
