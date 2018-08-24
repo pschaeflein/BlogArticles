@@ -1,9 +1,7 @@
 # DRAFT
 # Branding SharePoint: The New Normal
 
-LINKS
-
-[Modern SharePoint](https://bob1german.com/2018/02/09/what-is-modern-sharepoint-and-why-should-i-care/) is catching on, and sites are looking better than ever right out of the box. With mobile-ready pages and easier editing, customers and partners are starting to ask for it. And as SharePoint 2019 brings the modern experience on premises, the demand is likely to appear just as it has online.
+[Modern SharePoint](https://bob1german.com/2018/02/09/what-is-modern-sharepoint-and-why-should-i-care/) is catching on, and sites are looking better than ever right out of the box. With mobile-ready pages and easier editing, customers and partners are starting to ask for it. And as [SharePoint 2019](https://techcommunity.microsoft.com/t5/Microsoft-SharePoint-Blog/Announcing-Availability-of-SharePoint-Server-2019-Preview/ba-p/214427) brings the modern experience on premises, the demand is likely to grow even more.
 
 Yet even as sites look better than ever "out of the box", there are limitations on how they can be customized. Partners and customers who want to completely change the look sometimes run into these boundaries and get frustrated.
 
@@ -11,10 +9,10 @@ This article will explain what you can and can't customize on modern SharePoint 
 
 ## How did we get here?
 
-The story really began with SharePoint 2007, when Microsoft Content Management Server (MCMS) was "merged" into SharePoint. MCMS was based on a wonderful web content management (WCM) system called NCompass Resolution, and it allowed designers to build pretty much anything they could imagine. SharePoint introduced "Publishing Sites" which include most of the MCMS capabilities, such as the ability to start with a design composite (image) and make an editable page that looks exactly like it.
+The story really began with [SharePoint 2007](https://www.amazon.com/Professional-SharePoint-Content-Management-Development/dp/0470224754/ref=sr_1_1?ie=UTF8&qid=1535135934&sr=8-1&keywords=andrew+connell+2007), when Microsoft Content Management Server (MCMS) was "merged" into SharePoint. MCMS was based on a wonderful web content management (WCM) system called [NCompass](https://news.microsoft.com/2001/04/30/microsoft-to-acquire-ncompass-labs/) Resolution, and it allowed designers to build pretty much anything they could imagine. SharePoint introduced "Publishing Sites" which include most of the MCMS capabilities, such as the ability to start with a design composite (image) and make an editable page that looks exactly like it. Indeed, you almost had to brand it, as the out of the box site, shown in Figure 1, wasn't really usable as-is.
 
 ![Out of the box publishing site, circa 2007](SP2007-PublishingSite.png)
-Out of the box publishing cite, circa 2007
+Figure 1 - Out of the box publishing cite, circa 2007
 
 Microsoft started to promote SharePoint as a general purpose WCM system for building any site, public or private. They worked hard to get customers to adopt the technology. If you'd like to see some examples, check out [Top SharePoint Sites](http://www.topsharepoint.com/category/top-sites?r_sortby=highest_rated&r_orderby=desc); notice that they're mostly pretty old.
 
@@ -24,11 +22,11 @@ The resulting solutions were pretty cool until it came time to upgrade SharePoin
 
 Here are some of the architectural issues that led to this situation:
 
-1. SharePoint and customizations share key files, such as master pages and page layouts, with SharePoint and custom code freely intermixed. There was no easy way to  upgrade just the SharePoint parts of these files without breaking the customization. This situation remains in today's SharePoint Online "classic" sites, except now it's compounded by SharePoint's constant and ongoing upgrades, which are pretty standard for a SaaS (Software as a Service) cloud offering.
+1. SharePoint and customizations share key files, such as [master pages](https://github.com/rdrisgill/sharepoint-starter-masterpages) and page layouts, with SharePoint and custom code freely intermixed. There was no easy way to  upgrade just the SharePoint parts of these files without breaking the customization. This situation remains in today's SharePoint Online "classic" sites, except now it's compounded by SharePoint's constant and ongoing upgrades, which are pretty standard for a SaaS (Software as a Service) cloud offering.
 
 1. Many of the customization methods required installing code directly on SharePoint servers, which isn't workable in a multi-tenant environment like SharePoint Online. Server-side changes also created problems when migrating to a new version of SharePoint; if every customization isn't installed perfectly on the new servers, the result is broken features and often the dreaded "correlation ID".
 
-1. Many of the customization methods such as JSLink and Display Templates are designed to be performed right on SharePoint sites, and don't lend themselves well to use of source control or any kind of testing outside of production. The same goes for tools like SharePoint Designer.
+1. Many of the customization methods such as [JSLink](https://social.technet.microsoft.com/wiki/contents/articles/37684.sharepoint-2013-jslink-client-side-rendering.aspx) and [Display Templates](https://docs.microsoft.com/en-us/sharepoint/dev/general-development/sharepoint-design-manager-display-templates) are designed to be performed right on SharePoint sites, and don't lend themselves well to use of source control or testing outside of production. The same goes for tools like [SharePoint Designer](https://en.wikipedia.org/wiki/Microsoft_SharePoint_Designer).
 
 ## You don't brand Word or Outlook, why should you brand SharePoint?
 
@@ -46,29 +44,28 @@ For example, you can still hire a designer to come up with a look for your new I
 
 ## Customization or Configuration?
 
-Every part of a SharePoint page can be configured - you can set up your own content, colors, logos, etc. And most of the page can be fully customized with custom coded web parts and SharePoint Framework extensions.
+Nearly every part of a SharePoint page can be configured - you can set up your own content, colors, logos, etc. And most of the page can be fully customized with custom coded web parts and SharePoint Framework extensions.
 
-Figure ??? shows the home page of a modern Communication site, which is typically the one used to publish information on an intranet. Gold boxes and callouts show the portions of the page that SharePoint owns, so you can configure but not customize them. Green boxes and callouts show the portions of the page where you can put use custom code to create anything you wish.
+Figure 2 shows the home page of a modern Communication site, which is typically the one used to publish information on an intranet. Gold boxes and callouts show the portions of the page that SharePoint owns, so you can configure but not customize them. Green boxes and callouts show the portions of the page where you can put use custom code to create anything you wish.
 
 ![Customization and Configuration of Modern SharePoint](./CommunicationSitePageRegions.png)
+Figure 2 - Communication site home page elements
 
 The callouts point to specific areas of the page as follows:
 
-??? ADD LINKS TO ALL OF THESE ???
+1. [Suite Bar](https://sympmarc.com/2016/09/16/customizing-the-suite-bar-theme-in-your-office-365-tenant/): This bar is common to most Office 365 services, and allows navigation between products, access to the user profile, help, etc. It can be configured with your choice of colors and a company logo.
 
-1. Suite Bar: This bar is common to most Office 365 services, and allows navigation between products, access to the user profile, help, etc. It can be configured with your choice of colors and a company logo.
+2. [SharePoint Framework header](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/extensions/get-started/using-page-placeholder-with-extensions): This is fully customizable (with code) to hold anything you wish.
 
-2. SharePoint Framework header: This is fully customizable (with code) to hold anything you wish.
-
-3. Hub site navigation: This allows navigation within a set of sites that belong to a hub. You can configure the links and add your logo here.
+3. [Hub site](https://support.office.com/en-us/article/what-is-a-sharepoint-hub-site-fe26ae84-14b7-45b6-a6d1-948b3966427f) navigation: This allows navigation within a set of sites that belong to a hub. You can configure the links and add your logo here.
 
 4. SharePoint page header: This displays navigation within the site, the site classification, and some common features such as following, sharing, or editing the page. You can configure this with colors (the site "theme") and a logo.
 
-5. Web parts: You can put any web parts you want on the page. This can include custom web parts written using the SharePoint Framework. So-called "full bleed" web parts can span the width of the page, inviting use for single page applications. So you can really put anything you wish here. This typically makes up the majority of the page, with more screen real estate than all the other elements combined.
+5. [Web parts](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/overview-client-side-web-parts): You can put any web parts you want on the page. This can include custom web parts written using the SharePoint Framework. So-called ["full bleed"](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/use-web-parts-full-width-column) web parts can span the width of the page, inviting use for single page applications. (Full bleed is jargon from the printing industry; no animals are killed when developing these web parts!) So you can really put anything you wish here. This typically makes up the majority of the page, with more screen real estate than all the other elements combined.
 
-6. SharePoint Framework footer: Like the header, this is fully customizable to hold anything you wish.
+6. [SharePoint Framework footer](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/extensions/get-started/using-page-placeholder-with-extensions): Like the header, this is fully customizable to hold anything you wish.
 
-7. Pop-up buttons: These buttons overlay the bottom of the page, and currently can't be customized or configured. ???
+7. Pop-up buttons: These buttons overlay the bottom of the page, and currently can't be customized or configured.
 
 ## Branding options
 
@@ -80,13 +77,15 @@ There are a lot of compelling reasons to leave classic SharePoint and move to th
 
 While it may seem desirable to customize everything, it's a good idea to evaluate the business benefits to the changes. What's the business value in moving the search box a few pixels?
 
-I once watched the marketing VP for a major investment bank have a complete melt-down when the Office 365 suite bar appeared in the wireframes his company had commissioned. The developers found a way to hide it, but at what benefit and cost? I'm still not clear on the benefit of removing it, but the cost was that users could no longer navigate to other Office 365 properties, or easily manage their user profiles.
+I once watched the marketing VP for a large financial services firm have a complete melt-down when the Office 365 suite bar appeared in the wireframes his company had commissioned. The developers found a way to hide it, but at what benefit and cost?  I'm still not clear on the benefit of removing it, but the cost was that users could no longer navigate to other Office 365 properties, or easily manage their user profiles. Plus, it required a hack (see the next section).
 
 If you've identified customizations that go beyond modern SharePoint's guidelines, and there is a clear business benefit, there are other options. Read on!
 
 ### Option 2: Take a chance on a few hacks
 
-Don't get me wrong, I'm not recommending that you do this! But that doesn't mean some people won't. SharePoint pages run in web browsers, which use HTML, CSS, and JavaScript. There's nothing stopping the code in a SharePoint Framework web part or extension from  overriding CSS or manipulating the HTML Document Object Model (DOM). It's up to you, but you should at least understand the risks. When you do this, you're hoping that SharePoint won't change the page in some way that would break your code, and potentially the whole page.
+Don't get me wrong, I'm not recommending that you do this! But that doesn't mean some people won't. In fact I saw two such hacks on blogs just today, one a free code share and one actually a paid product. I'd like to see these folks include some kind of warning about the risks of the solution breaking if Microsoft changes the page structure in the future.
+
+OK let's back up a little. SharePoint pages run in web browsers, which use HTML, CSS, and JavaScript. There's nothing stopping the code in a SharePoint Framework web part or extension from  overriding CSS or manipulating the HTML Document Object Model (DOM). It's up to you, but you should at least understand the risks. When you do this, you're hoping that SharePoint won't change the page in some way that would break your code, and potentially the whole page.
 
 If you code against a documented SharePoint API and it breaks, you've got a legitimate support case with Microsoft. And trust me, Microsoft does its best to keep its APIs stable and provide plenty of notice in case of a change.
 
