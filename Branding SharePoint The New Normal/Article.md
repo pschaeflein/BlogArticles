@@ -3,26 +3,28 @@
 
 [Modern SharePoint](https://bob1german.com/2018/02/09/what-is-modern-sharepoint-and-why-should-i-care/) is catching on, and sites are looking better than ever right out of the box. With mobile-ready pages and easier editing, customers and partners are starting to ask for it. And as [SharePoint 2019](https://techcommunity.microsoft.com/t5/Microsoft-SharePoint-Blog/Announcing-Availability-of-SharePoint-Server-2019-Preview/ba-p/214427) brings the modern experience on premises, the demand is likely to grow even more.
 
-Yet even as sites look better than ever "out of the box", there are limitations on how they can be customized. Partners and customers who want to completely change the look sometimes run into these boundaries and get frustrated.
+Yet even as sites look better than ever "out of the box", there are constraints on how they can be customized. Partners and customers who want to completely change the look sometimes run into these boundaries and get frustrated.
 
-This article will explain what you can and can't customize on modern SharePoint pages and why. It will also offer some alternatives for those who absolutely most color outside the lines.
+   NOTE: In this article, _customization_ means changing SharePoint's behavior or rendering in ways not built into SharePoint, generally using some kind of code. _Configuration_ means changing SharePoint's behavior or rendering using settings and content.
+
+This article will explain what you can and can't customize on modern SharePoint pages and why. It will also offer alternatives for those who absolutely must color outside the lines.
 
 ## How did we get here?
 
-The story really began with [SharePoint 2007](https://www.amazon.com/Professional-SharePoint-Content-Management-Development/dp/0470224754/ref=sr_1_1?ie=UTF8&qid=1535135934&sr=8-1&keywords=andrew+connell+2007), when Microsoft Content Management Server (MCMS) was "merged" into SharePoint. MCMS was based on a wonderful web content management (WCM) system called [NCompass](https://news.microsoft.com/2001/04/30/microsoft-to-acquire-ncompass-labs/) Resolution, and it allowed designers to build pretty much anything they could imagine. SharePoint introduced "Publishing Sites" which include most of the MCMS capabilities, such as the ability to start with a design composite (image) and make an editable page that looks exactly like it. Indeed, you almost had to brand it, as the out of the box site, shown in Figure 1, wasn't really usable as-is.
+The story really began with [SharePoint 2007](https://www.amazon.com/Professional-SharePoint-Content-Management-Development/dp/0470224754/ref=sr_1_1?ie=UTF8&qid=1535135934&sr=8-1&keywords=andrew+connell+2007), when Microsoft Content Management Server (MCMS) was "merged" into SharePoint. MCMS was based on a wonderful web content management (WCM) system called [NCompass](https://news.microsoft.com/2001/04/30/microsoft-to-acquire-ncompass-labs/) Resolution, and it gave designers complete control over page rendering. SharePoint introduced _Publishing Sites_ which include most of the MCMS capabilities, such as the ability to start with a design composite (image) and make an editable page that looks exactly like it. Indeed, you almost had to brand it, as the out of the box site, shown in Figure 1, was really bare-bones.
 
 ![Out of the box publishing site, circa 2007](SP2007-PublishingSite.png)
 Figure 1 - Out of the box publishing cite, circa 2007
 
-Microsoft started to promote SharePoint as a general purpose WCM system for building any site, public or private. They worked hard to get customers to adopt the technology. If you'd like to see some examples, check out [Top SharePoint Sites](http://www.topsharepoint.com/category/top-sites?r_sortby=highest_rated&r_orderby=desc); notice that they're mostly pretty old.
+Microsoft started to promote SharePoint as a general purpose WCM system for building any site, public or private. A lot of us in Microsoft and the community worked hard to get customers to adopt the technology. If you'd like to see some examples of public facing sites with deep branding, check out [Top SharePoint Sites](http://www.topsharepoint.com/category/top-sites?r_sortby=highest_rated&r_orderby=desc); notice that they're mostly pretty old.
 
-While SharePoint never did capture more than a sliver of the already fragmented market for public-facing websites, it became the market leader for internally facing Intranet sites. Its flexibility led to an assumption that you could hire designers and developers to build any imaginable site from scratch, and it would benefit from SharePoint's powerful document management, search, security, and other enterprise features.
+While SharePoint never did capture more than a sliver of the fragmented market for web publishing, it became the market leader for internally facing Intranet sites. Its flexibility led to an assumption that you could hire designers and developers to build any imaginable site from scratch, and it would benefit from SharePoint's powerful document management, search, security, and other enterprise features.
 
-The resulting solutions were pretty cool until it came time to upgrade SharePoint. Each upgrade required a lot of rework, and sometimes a complete rewrite of the solution. Many enterprises resigned themselves to maintaining multiple versions of SharePoint rather than incur the expenses of upgrading their most customized sites.
+The resulting solutions were pretty cool until it came time to upgrade SharePoint. Each upgrade required a lot of rework, and sometimes a complete rewrite of the solution. Many enterprises resigned themselves to maintaining multiple versions of SharePoint rather than incur the expense of upgrading their most customized sites.
 
 Here are some of the architectural issues that led to this situation:
 
-1. SharePoint and customizations share key files, such as [master pages](https://github.com/rdrisgill/sharepoint-starter-masterpages) and page layouts, with SharePoint and custom code freely intermixed. There was no easy way to  upgrade just the SharePoint parts of these files without breaking the customization. This situation remains in today's SharePoint Online "classic" sites, except now it's compounded by SharePoint's constant and ongoing upgrades, which are pretty standard for a SaaS (Software as a Service) cloud offering.
+1. SharePoint and customizations share key files, such as [master pages](https://github.com/rdrisgill/sharepoint-starter-masterpages) and page layouts, with code from customizations and SharePoint freely intermixed. There was no easy way to  upgrade just the SharePoint parts of these files without breaking the customization. This situation remains in today's SharePoint Online "classic" sites, except now it's compounded by SharePoint's constant and ongoing upgrades, which are pretty standard for a SaaS (Software as a Service) cloud offering.
 
 1. Many of the customization methods required installing code directly on SharePoint servers, which isn't workable in a multi-tenant environment like SharePoint Online. Server-side changes also created problems when migrating to a new version of SharePoint; if every customization isn't installed perfectly on the new servers, the result is broken features and often the dreaded "correlation ID".
 
@@ -34,11 +36,11 @@ All of this led to another school of thought: instead of "completely customize S
 
 There are good reasons to brand SharePoint, however. Intranets are supposed to drive employee engagement, and branding is an important part of that. And SharePoint is primarily a website, and web sites are nearly always branded.
 
-In addition to branding, other customizations allow SharePoint to be tailored to the policies and workstreams of each customer. Building on SharePoint can save money (vs. starting from scratch), and empower a company's workforce. So let's not throw the out baby with the bath water!
+In addition to branding, customizations allow tailoring SharePoint to the policies and workstreams of each customer. Building solutions on SharePoint can save money vs. building an application from scratch, and empower a company's workforce. So it's worth figuring out how to be smart about customizing SharePoint rather than running away in fear.
 
 Fortunately, Microsoft learned from the painful issues that arose from customizing classic SharePoint. Modern SharePoint is designed for the cloud, where multiple tenants and ongoing changes are a fact of life. It's also designed to allow developers to follow established best practices, like managing code in a source control system and testing that code before placing it in production.
 
-This is good news, but it comes at a price: there are limits to the ways you can customize modern SharePoint. Some limitations are probably temporary, as Modern SharePoint is still a work in progress. But, like most SaaS services, there will always be some limitations on how you can customize SharePoint. That's the new normal, and requires thinking differently about branding and customization.
+This is good news, but it comes at a price: there are limits to the ways you can customize modern SharePoint. Some of them are probably temporary, as Modern SharePoint is still a work in progress. But, like most SaaS services, there will always be some swim lanes you need to stay in. That's the new normal, and it requires thinking differently about branding and customization.
 
 For example, you can still hire a designer to come up with a look for your new Intranet, but he or she needs to be aware of what can and can't be changed on modern SharePoint pages, or you need to choose a different path entirely. The next section explains exactly what you can and can't change in modern SharePoint, and the section which follows offers alternatives to consider if you decide you can't live within the boundaries.
 
@@ -61,7 +63,7 @@ The callouts point to specific areas of the page as follows:
 
 4. SharePoint page header: This displays navigation within the site, the site classification, and some common features such as following, sharing, or editing the page. You can configure this with colors (the site "theme") and a logo.
 
-5. [Web parts](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/overview-client-side-web-parts): You can put any web parts you want on the page. This can include custom web parts written using the SharePoint Framework. So-called ["full bleed"](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/use-web-parts-full-width-column) web parts can span the width of the page, inviting use for single page applications. (Full bleed is jargon from the printing industry; no animals are killed when developing these web parts!) So you can really put anything you wish here. This typically makes up the majority of the page, with more screen real estate than all the other elements combined.
+5. [Web parts](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/overview-client-side-web-parts): You can put any web parts you want on the page. This can include custom web parts written using the SharePoint Framework. So-called ["full bleed"](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/use-web-parts-full-width-column) web parts can span the width of the page, inviting use for single page applications. (Full bleed is jargon from the printing industry; no animals are harmed when developing these web parts!) So you can really put anything you wish here. This typically makes up the majority of the page, with more screen real estate than all the other elements combined.
 
 6. [SharePoint Framework footer](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/extensions/get-started/using-page-placeholder-with-extensions): Like the header, this is fully customizable to hold anything you wish.
 
@@ -69,31 +71,31 @@ The callouts point to specific areas of the page as follows:
 
 ## Branding options
 
-This section offers a number of alternative options for branding SharePoint, some of which go beyond the limitations of modern SharePoint, but generally at a price.
+This section offers a number of approaches for branding SharePoint, some of which go beyond modern SharePoint, but generally at a price.
 
 ### Option 1: Stay within the guardrails
 
-There are a lot of compelling reasons to leave classic SharePoint and move to the new modern experience, and Microsoft expects that most customers won't mind working within the guardrails. The [official guidance is here](https://docs.microsoft.com/en-us/sharepoint/dev/scenario-guidance/branding).
+There are a lot of compelling reasons to leave classic SharePoint and move to the new modern experience, and Microsoft expects that most customers won't mind working within the guardrails. The [official branding guidance is here](https://docs.microsoft.com/en-us/sharepoint/dev/scenario-guidance/branding).
 
-While it may seem desirable to customize everything, it's a good idea to evaluate the business benefits to the changes. What's the business value in moving the search box a few pixels?
+While it may seem desirable to customize everything, it's a good idea to evaluate the business benefits to the changes. Is there real business value, or are egos and expectations involved? (Actually I'm hoping this article helps set the right expectations up front, which I think would have helped in a couple projects I'm aware of...)
 
-I once watched the marketing VP for a large financial services firm have a complete melt-down when the Office 365 suite bar appeared in the wireframes his company had commissioned. The developers found a way to hide it, but at what benefit and cost?  I'm still not clear on the benefit of removing it, but the cost was that users could no longer navigate to other Office 365 properties, or easily manage their user profiles. Plus, it required a hack (see the next section).
+I once watched a marketing VP have a complete melt-down when the Office 365 suite bar appeared in the wireframes for a new Intranet I worked on. We found a way to hide it, but at what benefit and cost?  I'm still not clear on the benefit of removing it, but the cost was that users could no longer navigate to other Office 365 properties, or easily manage their user profiles. Plus, it required a hack (see the next section).
 
 If you've identified customizations that go beyond modern SharePoint's guidelines, and there is a clear business benefit, there are other options. Read on!
 
 ### Option 2: Take a chance on a few hacks
 
-Don't get me wrong, I'm not recommending that you do this! But that doesn't mean some people won't. In fact I saw two such hacks on blogs just today, one a free code share and one actually a paid product. I'd like to see these folks include some kind of warning about the risks of the solution breaking if Microsoft changes the page structure in the future.
+Don't get me wrong, I'm not recommending that you do this! But that doesn't mean some people won't. (Wait, did I just admit to it in the last section? It was my friend who did it actually!)
 
-OK let's back up a little. SharePoint pages run in web browsers, which use HTML, CSS, and JavaScript. There's nothing stopping the code in a SharePoint Framework web part or extension from  overriding CSS or manipulating the HTML Document Object Model (DOM). It's up to you, but you should at least understand the risks. When you do this, you're hoping that SharePoint won't change the page in some way that would break your code, and potentially the whole page.
+OK let's back up a little. SharePoint pages run in web browsers which render HTML and CSS.  Unless you use IFrames (which have challenges of their own), there's nothing stopping the code in a SharePoint Framework web part or extension from overriding CSS or manipulating the HTML Document Object Model (DOM). It's up to you, but you should at least understand the risks. When you do this, you're hoping that SharePoint won't change the page in some way that would break your code, and potentially the whole page.
 
-If you code against a documented SharePoint API and it breaks, you've got a legitimate support case with Microsoft. And trust me, Microsoft does its best to keep its APIs stable and provide plenty of notice in case of a change.
+If your code uses a documented SharePoint API and it breaks, you've got a legitimate support case with Microsoft. And trust me, Microsoft does its best to keep its APIs stable and provide plenty of notice in case of a change.
 
-On the other hand, if you reverse-engineer SharePoint and code against an undocumented CSS class or DOM element, all bets are off. Microsoft could change it without notice because they don't know about your change, and notifying everyone about every little change would be ridiculous. If you called support they'd probably be sympathetic, but they're unlikely to back out the changes for one customer. That's the very meaning of the word "unsupported."
+On the other hand, if you reverse-engineer SharePoint and code against an undocumented CSS class or DOM element, all bets are off. Microsoft could change it without notice because they don't know about your change, and notifying everyone about every little change would be ridiculous. If you called support they'd probably be sympathetic, but they're unlikely to back out the changes that broke your code. That's the very meaning of the word "unsupported."
 
 Hacking SharePoint is a rocky path, and if you decide to go there, it's your choice to slow down and hack carefully or just barrel on through. If you make 100 changes and forget what they are, what happens when it breaks? Chances are you'll have a small crisis on your hands (or maybe a big one).
 
-It is possible, however, to hack carefully. For example a large enterprise I've worked with has exactly one of these hacks across their entire intranet. It's on the home page, where they used CSS and DOM manipulation to change the out of the box heading. They maintain a copy on a Targeted Release tenant where they test it weekly, knowing that any breaking changes will appear there before they reach production. And they don't just test it once, they test it in the SharePoint mobile app and in a Microsoft Teams tab, as well as in each of the company's supported browsers. If there's a problem, they can remove one hidden web part from the production home page and it will revert to the out-of-box look, and then take the time to come up with a new hack.
+It is possible, however, to hack carefully. For example a large enterprise I've worked with has exactly one of these hacks across their entire intranet. It's on the home page, where they a hidden web part to used CSS and DOM manipulation to change the page heading. They maintain a copy on a Targeted Release tenant where they test it regularly, knowing that any breaking changes will appear there before they reach production. If there's a problem, they can remove one hidden web part from the production home page and it will revert to the out-of-box look, and give them time to come up with a new hack.
 
 If that sounds like a lot of work, well it is. There's a tradeoff between risk, resources, and reward; if you're going to hack, at least make the tradeoff consciously.
 
@@ -105,7 +107,7 @@ Bottom line is you'll need to live with the limitations of classic. For example,
 
 ### Option 4: Use SharePoint as a headless CMS
 
-With SharePoint's rich set of client API's, you can surface SharePoint content in any web application. You can design any page you want, host it anywhere, and have it call SharePoint API's to bring in the content. You could even surface SharePoint content in another CMS such as SiteCore or WordPress.
+With SharePoint's rich set of client API's, you can surface SharePoint content in any application. You can design any site, host it as you wish, and have it call SharePoint API's to bring in the content. You could even surface SharePoint content in another CMS such as SiteCore or WordPress.
 
 While this works, it's likely to be costly as you're now maintaining more code and possibly a second product to make your Intranet work.
 
@@ -113,21 +115,21 @@ While this works, it's likely to be costly as you're now maintaining more code a
 
 There's a huge market of Intranet in a Box solutions out there, most of which are either built on or somehow integrate with SharePoint. These solutions generally come with their own limitations, but perhaps you'll find them more acceptable than the ones in modern SharePoint.
 
-However this isn't really a 5th option, since every Intranet in a Box solution will need to choose one of the other options to build their product! Looking at the big list of products ???, I recognize some which run on classic SharePoint, some on modern, and some outside of SharePoint entirely. And they may or may not resort to a few hacks along the way.
+However this isn't really a 5th option, since every Intranet in a Box solution will need to choose one of the other options to build their product! Looking at the [big list of products](https://www.clearbox.co.uk/portfolio-item/sharepoint-intranets-in-a-box-report-2018/), I recognize some which run on classic SharePoint, some on modern, and some outside of SharePoint entirely. And they may or may not resort to a few hacks along the way.
 
-My advice here is to discuss this with the product vendor, and be aware that the same tradeoffs exist for them as they would for you. 
+My advice here is to discuss this with the product vendor, and be aware that the same tradeoffs exist for them that would for you.
 
- - If it's built on classic SharePoint, are you ready to live without enhancements from Microsoft? What's the roadmap? Will they be asking you to migrate again someday to something more modern?
+ - If it's built on classic SharePoint, are you ready to live without enhancements from Microsoft? Do they have plans to move off classic SharePoint, and will there be a migration if they do?
  - If it's built outside of SharePoint, are you ready to forgo the SharePoint ecosystem of web parts and add-ins?
- - If it's built on modern SharePoint, does it have the same boundaries, or did they hack it? What's the support plan?
+ - If it's built on modern SharePoint, did they hack it, and if so, how carefully? What's the support plan?
 
 ## Getting the genie back in the bottle
 
 There are a lot of benefits to modern SharePoint, not the least of which is improved stability, even in the face of the constant updates made to Office 365. You might not be able to move the search box, but you'll never spend another sleepless night trying to upgrade your Intranet to a new version of SharePoint.
 
-The broad WCM capabilities introduced in 2007, however, set an expectation that, given sufficient time and money, any wish can be fulfilled. Now we have to reset that expectation.
+The broad WCM capabilities introduced in 2007 set an expectation that, for a custom UI, any wish can be fulfilled. Now we have to reset that expectation.
 
-Modern SharePoint will continue to evolve. In all probability there will be more opportunities for customization over time, as well as more features which can only be configured and not fully customized.
+Modern SharePoint will continue to evolve. In all probability there will be more opportunities for customization over time, as well as more features which can be configured in new ways.
 
 Given that reality, it would be smart to educate decision-makers and designers on both the benefits and the boundaries of modern SharePoint. So far, for most customers I've asked, the boundaries aren't really a problem and the benefits are significant. If you're one of the few who need to customize beyond what's possible in modern SharePoint, it's a good idea to understand the options and tradeoffs, and make a conscious decision.
 
