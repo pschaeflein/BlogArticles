@@ -46,7 +46,7 @@ For example, you can still hire a designer to come up with a look for your new I
 
 ## Customization or Configuration?
 
-Nearly every part of a SharePoint page can be configured - you can set up your own content, colors, logos, etc. And most of the page can be fully customized with custom coded web parts and SharePoint Framework extensions.
+Nearly every part of a SharePoint page can be configured - you can set up your own content, colors, logos, etc. And most of the page can be fully customized with custom coded web parts and SharePoint Framework extensions. In addition, modern sites support [theming](https://docs.microsoft.com/en-us/sharepoint/dev/declarative-customization/site-theming/sharepoint-site-theming-overview) to applying custom styles in addition to the configuration and customization here.
 
 Figure 2 shows the home page of a modern Communication site, which is typically the one used to publish information on an intranet. Gold boxes and callouts show the portions of the page that SharePoint owns, so you can configure but not customize them. Green boxes and callouts show the portions of the page where you can put use custom code to create anything you wish.
 
