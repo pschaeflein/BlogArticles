@@ -59,7 +59,9 @@ The callouts point to specific areas of the page as follows:
 
 2. [SharePoint Framework header](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/extensions/get-started/using-page-placeholder-with-extensions): This is fully customizable (with code) to hold anything you wish.
 
-3. [Hub site](https://support.office.com/en-us/article/what-is-a-sharepoint-hub-site-fe26ae84-14b7-45b6-a6d1-948b3966427f) navigation: This allows navigation within a set of sites that belong to a hub. You can configure the links and add your logo here.
+3. [Hub site](https://support.office.com/en-us/article/what-is-a-sharepoint-hub-site-fe26ae84-14b7-45b6-a6d1-948b3966427f) navigation: This allows navigation within a set of sites that belong to a hub. You can configure the links and add your logo here. You can also add a color to the hub site navigation and header using the new theme "Accent colors" (rolling out to production now).
+
+     ![Accent colors](./HeaderEmphasis.png)
 
 4. SharePoint page header: This displays navigation within the site, the site classification, and some common features such as following, sharing, or editing the page. You can configure this with colors (the site "theme") and a logo.
 
@@ -67,7 +69,7 @@ The callouts point to specific areas of the page as follows:
 
 6. [SharePoint Framework footer](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/extensions/get-started/using-page-placeholder-with-extensions): Like the header, this is fully customizable to hold anything you wish.
 
-7. Pop-up buttons: These buttons overlay the bottom of the page, and currently can't be customized or configured.
+7. Pop-up buttons: These buttons overlay the bottom of the page, and currently can't be customized or configured. There is a tenant setting in development (see [-UserVoiceForFeedbackEnabled](https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps)) but it's not yet respected by modern pages, and maybe we need another [user voice](https://sharepoint.uservoice.com/) for the Mobile app button.
 
 ## Branding options
 
