@@ -101,18 +101,18 @@ In your application's overview page, you'll see a link to the Redirect URLs in t
 Add one for each of the V2 demos: 
 http://localhost:8080/index.2a.html and http://localhost:8080/index.2b.html.
 
-    At the time of this writing, the Azure AD App Registrations (Preview) section in the Azure Portal does not allow "." characters in Redirect URL's. You can add them using the old stand-alone [Appliction Registration Portal](https://apps.dev.microsoft.com/).
+NOTE: At the time of this writing, the Azure AD App Registrations (Preview) section in the Azure Portal does not allow "." characters in Redirect URL's. You can add them using the old stand-alone [Application Registration Portal](https://apps.dev.microsoft.com/).
 
 ## Configure the Sample
 
-First, clone or download the sample code from [https://github.com/BobGerman/AADsamples](https://github.com/BobGerman/AADsamples); this sample is in the [ImplicitFlow](https://github.com/BobGerman/AADsamples/tree/master/implicitFlow) folder. You'll need to have [Node] installed to build the TypeScript demos, and to run all of them.
+First, clone or download the sample code from [https://github.com/BobGerman/AADsamples](https://github.com/BobGerman/AADsamples); this sample is in the [implicitFlow](https://github.com/BobGerman/AADsamples/tree/master/implicitFlow) folder. You'll need to have [Node](https://nodejs.org/en/download/) installed to build the TypeScript demos, and to run all of them.
 
 From a command line in the implicitFlow directory, type:
 
     npm install
     npm install http-server -g
 
-Now edit the code to include your App ID's and other details.
+Now edit the code to include your App IDs and other details.
 
 * In index.1a.html, plug in your V1 client ID (the Application ID) and tenant id (like "mytenant.onmicrosoft.com)
 * In index.2a.html, plug in your V2 client ID (the Application ID).
@@ -182,7 +182,7 @@ function signIn() {
 
 With all the UI code, Graph calls, and authentication stuff mixed together, it can be a little hard to follow. So even if you're not a TypeScript developer, you might find it easier to understand.
 
-The TypeScript SPA includes two services, MSGraphService (which calls the Graph) and two implementations of an AuthService (which gets the access token) - one each for V1 and V2. ServiceFactory.ts is a poor person's dependency injection, and configures the MSGraphService to use the V1 or V2 version of AuthService based on the scenario selected.
+The TypeScript SPA includes two services, MSGraphService (which calls the Graph) and two implementations of an AuthService (which gets the access token) - one each for V1 and V2. ServiceFactory.ts is provides rudimentary dependency injection, and configures the MSGraphService to use the V1 or V2 version of AuthService based on the scenario selected.
 
 MSGraphService doesn't have to fuss about authentication, it just asks for a token and moves on:
 
@@ -254,10 +254,9 @@ if (this.ensureLogin(authContext)) {
 } else {
     reject(`Login error: ${authContext.getLoginError()}`);
 }
-});
 ```
 
-The V2 version of the Auth service is equally simple. Instead of ADAL's AuthenticationContext, we've got MSAL's UserAgentApplication ... kind of the same thing. This time the login and access token code are even more consise!
+The V2 version of the Auth service is equally simple. Instead of ADAL's AuthenticationContext, we've got MSAL's UserAgentApplication ... kind of the same thing. This time the login and access token code are even more concise! This is all you need:
 
 ```typescript
 // Ensure user is logged in
@@ -289,4 +288,4 @@ The calls are different, but the logic is pretty much the same. In MSAL, the cal
 
 ## Conclusion
 
-The simple instructions, "acquire an acess token," might as well be "fly to the moon" for a new Graph developer. Here's hoping your experience was easier than rocket science, and you're now equipped to use it in your single page applications and other browser based solutions!
+The simple instructions, "acquire an access token," might as well be "fly to the moon" for a new Graph developer. Here's hoping your experience was easier than rocket science, and you're now equipped to use it in your single page applications and other browser based solutions!
