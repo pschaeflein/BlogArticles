@@ -23,7 +23,7 @@ The TypeScript examples are new, and are intended for developers building full s
 
 This demo builds on articles 9?? and 10??, where you registered applications in Azure AD v2 and v1 respectively. These applications were used in several other articles. You'll need to update those registrations for this exercise; the sections which follow will walk you through the process.
 
-TIP: You might want to open the v1 and v2 apps registrations in different browser tabs, so you can easily switch back and forth as you go through the V1 and V2 instructions for each step.
+TIP: You might want to open the v1 and v2 app registrations in different browser tabs, so you can easily switch back and forth as you go through the V1 and V2 instructions for each step.
 
 ### Step 1. Add Delegated Permissions
 
@@ -188,7 +188,7 @@ function signIn() {
 
 With all the UI code, Graph calls, and authentication stuff mixed together, it can be a little hard to follow. So even if you're not a TypeScript developer, you might find it easier to understand the logic in the TypeScript examples.
 
-The TypeScript SPA includes two services, [MSGraphService](https://github.com/BobGerman/AADsamples/blob/master/implicitFlow/src/services/MSGraphService/MSGraphService.ts) (which calls the Graph) and two implementations of an [AuthService](https://github.com/BobGerman/AADsamples/tree/master/implicitFlow/src/services/AuthService) (which gets the access token) - one each for V1 and V2. [ServiceFactory.ts](https://github.com/BobGerman/AADsamples/blob/master/implicitFlow/src/services/ServiceFactory.ts) provides rudimentary dependency injection, and configures the MSGraphService to use the V1 or V2 version of AuthService based on the scenario selected.
+The TypeScript SPA includes two services, [MSGraphService](https://github.com/BobGerman/AADsamples/blob/master/implicitFlow/src/services/MSGraphService/MSGraphService.ts) (which calls the Graph) and two implementations of an [AuthService](https://github.com/BobGerman/AADsamples/tree/master/implicitFlow/src/services/AuthService) (which gets the access token) - one each for V1 and V2. [ServiceFactory.ts](https://github.com/BobGerman/AADsamples/blob/master/implicitFlow/src/services/ServiceFactory.ts) provides rudimentary dependency injection, and creates the MSGraphService the V1 or V2 version of AuthService based on the scenario selected.
 
 MSGraphService doesn't have to fuss about authentication, it just asks for a token and moves on:
 
@@ -262,7 +262,7 @@ if (this.ensureLogin(authContext)) {
 }
 ```
 
-The [V2 version of the Auth](https://github.com/BobGerman/AADsamples/blob/master/implicitFlow/src/services/AuthService/AuthServiceV2.ts) service is even more concise. equally simple. Instead of ADAL's AuthenticationContext, we've got MSAL's UserAgentApplication ... kind of the same thing. This is all you need:
+The [V2 version of the Auth](https://github.com/BobGerman/AADsamples/blob/master/implicitFlow/src/services/AuthService/AuthServiceV2.ts) service is even more concise. Instead of ADAL's AuthenticationContext, we've got MSAL's UserAgentApplication ... kind of the same thing. This is all you need:
 
 ```typescript
 // Ensure user is logged in
@@ -277,8 +277,7 @@ userAgentApp.acquireTokenSilent(constants.scopes)
     })
     .catch((error) => {
         console.log(error);
-        // If the error is due to a need for user
-        // interaction, then redirect to allow it
+        // If the error is due to a need for user interaction, then redirect to allow it
         if (error.indexOf("consent_required") !== -1 ||error.indexOf("interaction_required") !== -1 || error.indexOf("login_required") !== -1) {
             userAgentApp.acquireTokenRedirect(constants.scopes);
         } else {
