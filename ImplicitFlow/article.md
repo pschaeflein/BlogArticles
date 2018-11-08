@@ -1,4 +1,4 @@
-# Day ??? - Calling the Microsoft Graph from a single-page application with Azure AD 
+# Day ??? - Calling the Microsoft Graph from a single-page application
 
 In day 15??, you learned how to call the Graph API from a .NET command line application. Today you'll learn to do much the same thing from a web browser. There are a couple of big differences:
 
