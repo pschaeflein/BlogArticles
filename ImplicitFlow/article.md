@@ -3,9 +3,9 @@
 In day 15??, you learned how to call the Graph API from a .NET command line application. Today you'll learn to do much the same thing from a web browser. There are a couple of big differences:
 
 * The code will be written in JavaScript or TypeScript, because that's what runs in the browser
-* We'll have to use a different OAuth 2.0 flow, "Implicit Flow" to get the access token for use with Microsoft Graph, because that's the only option in the browser
+* We'll have to use a different OAuth 2.0 flow, "Implicit Flow" to get the access token for use with Microsoft Graph, because again, that's what runs in the browser
 
-Sometimes fewer choices makes life easier, right? That said, you'll still get to choose your flavor:
+Sometimes fewer choices makes life easier, right? That said, there are [four samples](https://github.com/BobGerman/AADsamples/tree/master/implicitFlow) that accompany this article, so you'll still get to choose your flavor:
 
 <table>
 <tr><th>File</th><th>Description</th></tr>
@@ -22,6 +22,8 @@ The TypeScript examples are new, and are intended for developers building full s
 ## Updating your App Registrations
 
 This demo builds on articles 9?? and 10??, where you registered applications in Azure AD v2 and v1 respectively. These applications were used in several other articles. You'll need to update those registrations for this exercise; the sections which follow will walk you through the process.
+
+TIP: You might want to open the v1 and v2 apps registrations in different browser tabs, so you can easily switch back and forth as you go through the V1 and V2 instructions for each step.
 
 ### Step 1. Add Delegated Permissions
 
@@ -114,9 +116,9 @@ From a command line in the implicitFlow directory, type:
 
 Now edit the code to include your App IDs and other details.
 
-* In index.1a.html, plug in your V1 client ID (the Application ID) and tenant id (like "mytenant.onmicrosoft.com)
-* In index.2a.html, plug in your V2 client ID (the Application ID).
-* In the src folder, rename or copy constants.sample.ts to constants.ts, and plug in your V1 and V2 application ID's and your tenant id
+* In [index.1a.html](https://github.com/BobGerman/AADsamples/blob/master/implicitFlow/index.1a.html), plug in your V1 client ID (the Application ID) and tenant id (like "mytenant.onmicrosoft.com)
+* In [index.2a.html](https://github.com/BobGerman/AADsamples/blob/master/implicitFlow/index.2a.html), plug in your V2 client ID (the Application ID).
+* In the [src](https://github.com/BobGerman/AADsamples/tree/master/implicitFlow/src) folder, rename or copy constants.sample.ts to constants.ts, and plug in your V1 and V2 application IDs and your tenant id
 
 Demos 2a and 2b require a build step to compile the TypeScript and make a webpack bundle. Type:
 
@@ -124,7 +126,7 @@ Demos 2a and 2b require a build step to compile the TypeScript and make a webpac
 
 ## Run the Sample
 
-To start the web browser, type
+To start a local web server, type
 
     http-server
 
@@ -142,31 +144,33 @@ The V1 JavaScript demo logs the user on and displays a bit of profile informatio
 
 Now you have 4 samples to check out, which all do the same thing. They first "log the user in" (validate the user and get an ID token), and then they get an access token that lets them call the Graph API.
 
+### JavaScript Samples
+
 If you're most comfortable in JavaScript and jQuery, the JavaScript samples are for you.
 
-index.1a.html shows ADAL and the v1 endpoint. Walking through the code can be a bit tricky because the same page is used to initiate the login and handle redirects after the user is logged in and the token is obtained. Here's the $(document).ready function which runs when the page is loaded:
+[index.1a.html](https://github.com/BobGerman/AADsamples/blob/master/implicitFlow/index.1a.html) shows ADAL and the v1 endpoint. Walking through the code can be a bit tricky because the same page is used to initiate the login and handle redirects after the user is logged in and the token is obtained. Here's the function which runs when the page is loaded:
 
 ```javascript
-        $(document).ready(function () {
-            // Check For & Handle Redirect From AAD After Login or Acquiring Token
-            var isCallback = sampleApp.authContext.isCallback(window.location.hash);
+$(document).ready(function () {
+    // Check For & Handle Redirect From AAD After Login or Acquiring Token
+    var isCallback = sampleApp.authContext.isCallback(window.location.hash);
 
-            if (isCallback && !sampleApp.authContext.getLoginError()) {
-                sampleApp.authContext.handleWindowCallback(window.location.hash);
-            } else {
-                var user = sampleApp.authContext.getCachedUser();
-                if (!user) {
-                    //Log in user
-                    sampleApp.authContext.login();
-                } else {
-                    sampleApp.getGraphData();
-                }
-            }
+    if (isCallback && !sampleApp.authContext.getLoginError()) {
+        sampleApp.authContext.handleWindowCallback(window.location.hash);
+    } else {
+        var user = sampleApp.authContext.getCachedUser();
+        if (!user) {
+            //Log in user
+            sampleApp.authContext.login();
+        } else {
+            sampleApp.getGraphData();
+        }
+    }
 ```
 
 Notice that it checks for a callback - that is, it asks ADAL if the page is running due to a redirect from Azure AD. authContext.handleWindowCallback() takes the token from Azure AD and puts it into local cache. If it needs to log the user in, it calls authContext.login() which _does not return_ - it redirects the browser window to Azure AD! The same thing can happen in the authContext.acquireToken() (not shown in the listing but it's in the code). 
 
-index.2a.html is similar, except it has login and logout buttons so the user can initiate the process. If the user isn't logged in, the page shows the login button (very little JavaScript runs). When the user clicks the button, they are logged in, but this time the Popup version of the login method is used, so the call returns a promise which is resolved when the user logs in via a popup window.
+[index.2a.html](https://github.com/BobGerman/AADsamples/blob/master/implicitFlow/index.2a.html) is similar, except it has login and logout buttons so the user can initiate the process. If the user isn't logged in, the page shows a login button (very little JavaScript runs). When the user clicks the button, they are logged in, but this time the Popup version of the login method is used, so the call returns a promise which is resolved when the user logs in via a popup window.
 
 ```javascript
 function signIn() {
@@ -180,9 +184,11 @@ function signIn() {
 }
 ```
 
-With all the UI code, Graph calls, and authentication stuff mixed together, it can be a little hard to follow. So even if you're not a TypeScript developer, you might find it easier to understand.
+### TypeScript samples (check them out even if you don't use TypeScript!)
 
-The TypeScript SPA includes two services, MSGraphService (which calls the Graph) and two implementations of an AuthService (which gets the access token) - one each for V1 and V2. ServiceFactory.ts is provides rudimentary dependency injection, and configures the MSGraphService to use the V1 or V2 version of AuthService based on the scenario selected.
+With all the UI code, Graph calls, and authentication stuff mixed together, it can be a little hard to follow. So even if you're not a TypeScript developer, you might find it easier to understand the logic in the TypeScript examples.
+
+The TypeScript SPA includes two services, [MSGraphService](https://github.com/BobGerman/AADsamples/blob/master/implicitFlow/src/services/MSGraphService/MSGraphService.ts) (which calls the Graph) and two implementations of an [AuthService](https://github.com/BobGerman/AADsamples/tree/master/implicitFlow/src/services/AuthService) (which gets the access token) - one each for V1 and V2. [ServiceFactory.ts](https://github.com/BobGerman/AADsamples/blob/master/implicitFlow/src/services/ServiceFactory.ts) provides rudimentary dependency injection, and configures the MSGraphService to use the V1 or V2 version of AuthService based on the scenario selected.
 
 MSGraphService doesn't have to fuss about authentication, it just asks for a token and moves on:
 
@@ -208,7 +214,7 @@ this.authService.getToken()
         // et cetera
 ```
 
-The v1 Auth service creates a new AuthenticationContext, which is the main object in ADAL, and then calls an internal function called ensureLogin() to make sure the user is logged in.
+The [v1 Auth service](https://github.com/BobGerman/AADsamples/blob/master/implicitFlow/src/services/AuthService/AuthServiceV1.ts) creates a new AuthenticationContext, which is the main object in ADAL, and then calls an internal function called ensureLogin() to make sure the user is logged in.
 
 ```typescript
 private ensureLogin(authContext: AuthenticationContext): boolean {
@@ -256,12 +262,11 @@ if (this.ensureLogin(authContext)) {
 }
 ```
 
-The V2 version of the Auth service is equally simple. Instead of ADAL's AuthenticationContext, we've got MSAL's UserAgentApplication ... kind of the same thing. This time the login and access token code are even more concise! This is all you need:
+The [V2 version of the Auth](https://github.com/BobGerman/AADsamples/blob/master/implicitFlow/src/services/AuthService/AuthServiceV2.ts) service is even more concise. equally simple. Instead of ADAL's AuthenticationContext, we've got MSAL's UserAgentApplication ... kind of the same thing. This is all you need:
 
 ```typescript
 // Ensure user is logged in
-if (!userAgentApp.getUser() ||
-    userAgentApp.isCallback(window.location.hash)) {
+if (!userAgentApp.getUser() || userAgentApp.isCallback(window.location.hash)) {
     userAgentApp.loginRedirect(constants.scopes);
 }
 
@@ -274,9 +279,7 @@ userAgentApp.acquireTokenSilent(constants.scopes)
         console.log(error);
         // If the error is due to a need for user
         // interaction, then redirect to allow it
-        if (error.indexOf("consent_required") !== -1 ||
-            error.indexOf("interaction_required") !== -1 ||
-            error.indexOf("login_required") !== -1) {
+        if (error.indexOf("consent_required") !== -1 ||error.indexOf("interaction_required") !== -1 || error.indexOf("login_required") !== -1) {
             userAgentApp.acquireTokenRedirect(constants.scopes);
         } else {
             reject('Error acquiring token: ' + error);

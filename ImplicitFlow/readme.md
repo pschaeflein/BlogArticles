@@ -1,3 +1,6 @@
+This readme is a work in progress
+The blog article is under article.md
+
 # Calling an Azure AD protected web service from your Single Page Application
 
 To call the Microsoft Graph API, you need an access token which proves to the Graph that you're a legitimate user and what permission you should have. The instructions sound simple: "acquire an access token", right? But in reality you might as well tell someone to "fly to the moon." Obtaining the right access token is often the most challenging part of calling the Graph API!
