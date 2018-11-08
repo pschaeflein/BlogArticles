@@ -15,13 +15,13 @@ Sometimes fewer choices makes life easier, right? That said, you'll still get to
 <tr><td>index.2b.html</td><td>v2 endpoint using MSAL with TypeScript, Webpack, and React</td>
 </table>
 
-The JavaScript examples are really simple, with good old jQuery and all the code on one page. They're actually drawn from elsewhere; the Azure AD V1  sample is from [Julie Turner's](https://twitter.com/jfj1997) awesome article series, [Extending SharePoint with ADAL and the Microsoft Graph API](https://julieturner.net/2017/01/extending-sharepoint-with-adal-and-the-microsoft-graph-api-part-1-the-setup/); the V2 example is from [A Microsoft tutorial.](https://docs.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-javascript-spa).
+The JavaScript examples are really simple, with good old jQuery and all the code on one page. They're actually drawn from elsewhere; the Azure AD V1  sample is from [Julie Turner's](https://twitter.com/jfj1997) awesome article series, [Extending SharePoint with ADAL and the Microsoft Graph API](https://julieturner.net/2017/01/extending-sharepoint-with-adal-and-the-microsoft-graph-api-part-1-the-setup/); the V2 example is from [this Microsoft tutorial.](https://docs.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-javascript-spa).
 
 The TypeScript examples are new, and are intended for developers building full scale single page applications. They're also instructive because TypeScript made it easy to separate the authentication code from the Graph calls and user interface, so it's a lot easier to see what's going on.
 
 ## Updating your App Registrations
 
-This demo builds on articles 9?? and 10??, where you registered applications in Azure AD v2 and v1 respectively. These appliocations were used in several other articles. You'll need to update those registrations for this exercise; the sections which follow will walk you through the process.
+This demo builds on articles 9?? and 10??, where you registered applications in Azure AD v2 and v1 respectively. These applications were used in several other articles. You'll need to update those registrations for this exercise; the sections which follow will walk you through the process.
 
 ### Step 1. Add Delegated Permissions
 
@@ -53,10 +53,10 @@ Then pick + Add a permission (1), and add the delegated Group.Read.All permissio
 
 ### Step 2 - Enable Implicit Flow
 
-The OAuth standard includes several "flows" for getting a access token. If you're in a web browser using Azure AD, you need to use [implicit flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-oauth2-implicit-grant-flow) because it doesn't require the browser to handle any secrets like an app password or key. 
+The OAuth 2.0 standard includes several "flows" for getting a access token. If you're in a web browser using Azure AD, you need to use [implicit flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-oauth2-implicit-grant-flow) because it doesn't require the browser to handle any secrets like an app password or key. 
 
 There's no way to keep a secret in the web browser where the user can always pop into the developer console, so it's better not to try. Instead of using a secret, implicit flow requires the user to log in from the web browser and to consent (once) to letting the application act on his or her behalf. 
-Since the only security is the user's login, you can only use delegated permissions with Implicit Flow.
+Since the only security is the user's login, you can only use delegated permissions with implicit flow.
 
 In addition, because implicit flow is less secure than the other OAuth flows, you need to mark the application as allowing implicit flow in Azure AD.
 
@@ -80,7 +80,7 @@ Check them, click Save, and you're done.
 
 Now you might have been wondering about these redirect URLs; with some OAuth flows they're not even used. We'll need them for sure this time! 
 
-Getting an access token isn't as simple as making a web service call because Azure AD might need to interact with the user to log in and consent to the permissions. So the Implicit "flow" is to redirect the web browser (either main page or a popup window) right to Azure AD, and let it take over for a while. When it's done, Azure AD redirects back to your site with the token in the URL hash (or an error if something went wrong). That URL is called the Redirect or Reply URL.
+Getting an access token isn't as simple as making a web service call because Azure AD might need to interact with the user to log in and consent to the permissions. So the implicit "flow" is to redirect the web browser (either main page or a popup window) right to Azure AD, and let it take over the UI for a while  - or for just for an instant if the user has already logged in and consented. When it's done, Azure AD redirects back to your site with the token in the URL hash (or an error if something went wrong). That URL is called the Redirect or Reply URL.
 
 Redirect URLs need to be registered to prevent a hacker from requesting an access token be sent to some unknown site. So to make the demos work, you'll need to register the redirect URL's.
 
@@ -88,7 +88,7 @@ Redirect URLs need to be registered to prevent a hacker from requesting an acces
 
 In your application, click Settings, then Reply URLs.
 
-![V1 redirect URLs](./2011-11-AADV1-ReplyURLs.png)
+![V1 redirect URLs](./2011-11-AADv1-ReplyURLs.png)
 
 Add one for each of the V1 demos: http://localhost:8080/index.1a.html and http://localhost:8080/index.1b.html.
 
@@ -96,7 +96,7 @@ Add one for each of the V1 demos: http://localhost:8080/index.1a.html and http:/
 
 In your application's overview page, you'll see a link to the Redirect URLs in the right column of information.
 
-![V2 redirect URLs](./2011-11-AADV2-ReplyURLs.png)
+![V2 redirect URLs](./2011-11-AADv2-ReplyURLs.png)
 
 Add one for each of the V2 demos: 
 http://localhost:8080/index.2a.html and http://localhost:8080/index.2b.html.
