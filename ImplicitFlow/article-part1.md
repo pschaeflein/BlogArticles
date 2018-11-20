@@ -96,7 +96,7 @@ http://localhost:8080/index.2a.html and http://localhost:8080/index.2b.html.
 
 NOTE: At the time of this writing, the Azure AD App Registrations (Preview) section in the Azure Portal does not allow "." characters in Redirect URL's. You can add them using the old stand-alone [Application Registration Portal](https://apps.dev.microsoft.com/).
 
-## Testing your applications
+## Testing your application registrations
 
 Now let's use [Postman](https://www.getpostman.com/), which was introduced in [day 13](https://developer.microsoft.com/en-us/graph/blogs/30daysmsgraph-day-13-postman-to-make-microsoft-graph-calls/). That article used the client credentials flow, which is useful in services that want to run under app permissions. This time, we'll use it with Implicit Flow.
 
