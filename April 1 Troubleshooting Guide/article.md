@@ -1,8 +1,8 @@
 # Top 10 Troubleshooting Tips for Computer Professionals
 
-Murphy's famous law is understated when it comes to computers. All of us in technical roles have experienced the misery and frustration that comes when the system flatlines and we have to find a cure. This article is a top 10 list of widely-used practices for diagnosing and addressing computer maladies. 
+Murphy's famous law is understated when it comes to computers. All of us in technical roles have experienced the misery and frustration that comes when the system flatlines and we have to find a cure. This article is a top 10 list of widely-used practices for diagnosing and addressing computer maladies.
 
-NOTE: For best results, please read all the way to the end of this article!
+NOTE: For best results, please read all the way to the end!
 
 <style>
 td { vertical-align: top; }
@@ -47,7 +47,8 @@ td { vertical-align: top; }
 </tr><tr>
 <td>10</td>
 <td>Articles written on April 1</td>
-<td>Perhaps you noticed the date at the top of this article: it's April Fools day! And you'd be a fool to follow any of the previous advice! In fact, these are all behaviors I've noticed that make it more difficult to succeed, so please reverse each item above.</td>
+<td>Perhaps you noticed the date at the top of this article: it's April Fools day. And you'd be a fool to follow any of this advice! 
+In fact, these are all common practices that make it harder to cure computer disorders, or at best, lead to short-term band-aids instead of addressing the cause of the affliction. For best results, reverse items 1-9.</td>
 </tr></table>
 
-I hope this has been helpful and that whatever problems technology throws at you, you find the cause and a solution that will work over time. And as always, thanks for reading!
+I hope this has been helpful and that whatever plagues your technology, you find a solution that will work over time. And as always, thanks for reading!
