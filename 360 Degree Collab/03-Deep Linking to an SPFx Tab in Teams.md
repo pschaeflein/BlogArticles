@@ -6,6 +6,10 @@ This is part 3 of a 3-part article series about building a "360 degree view" mas
  1. Accessing the hosting Team using the teams context and the Graph API (explained [in Part 2 of the series](#)
  1. Deep linking to a SharePoint Framework tab (this article)
 
+ The series is based on a [sample Teams tab written in SharePoint Framework](https://github.com/SharePoint/sp-dev-fx-webparts/tree/master/samples/react-teams-tab-field-visit-mashup) which displays a mashup of information about customer visits.
+
+![Field Visit Demo](./FieldVisitDemo.png)
+
 ## What is a deep link?
 
 In the world of web applications, a deep link is a link that not only selects a web page but also passes data to an application running on that page. For example, a link could open an Excel spreadsheet in a particular Team, rather than opening Teams and Excel in separate pages.
