@@ -1,8 +1,12 @@
-* [Part 1 - A new era for Bots in Microsoft Teams](010-ANewBotEra.md) - This article announces the blending of Teams functionality into the Azure Bot Framework, and explains the architecture and capabilities of the two technologies.
-* [Part 2 - Building low-code bots for Teams with QnA Maker](020-BuildingLowCodeQnABots.md) - Simple walk-through of a bot that can answer questions from a knowledge base. The article explains the Azure services that make this work, and how to bring the bot into Microsoft Teams.
-* [Part 3 - Tooling up for Teams Bot development](030-ToolingUpForTeamsBots.md) - This article explains the most popular options for building a Teams bot, and how to set up a development environment and get started with a bot template.
-* [Part 4 - Building Teams chatbots with LUIS and Dialogs](040-BuildingTeamsDialogs.md) - Chatbots use text to respond to natural language requests from users. In this article you'll learn how to use LUIS to determine the user's intent, and dialogs to refine and disambiguate requests.
-* [Part 5 - Using Adaptive Cards in Teams bot conversations](050-AdaptiveCardConversations.md) - Adaptive cards are little snippets of interactive content that are popping up everywhere. This article explains adaptive card basics, and how to build conversational bots that use them in Teams.
-* [Part 6 - Building Bot experiences in Teams with messaging extensions and task modules](060-MessagingExtensionsTaskModules) - By extending Teams context menus, it is possible to connect application data with conversations and vice-versa. This article will explain how to get started.
-* [Part 7 - Calling back-end services from Bots in Teams](070-CallingBackEndServices.md
-) - Bots are only as useful as the services they offer to users, and effective bots need to call back-end services to carry out user request. This article explains the basics of calling back-end services on behalf of a Teams user.
+# Title
+
+This article is part of a multi-part series on building Teams Bots:
+
+* [Part 1 - A new era for Bots in Microsoft Teams](010-ANewBotEra.md)
+* [Part 2 - Building low-code bots for Teams with QnA Maker](020-BuildingLowCodeQnABots.md) 
+* [Part 3 - Tooling up for Teams Bot development](030-ToolingUpForTeamsBots.md)
+* [Part 4 - Building Teams chatbots with LUIS and Dialogs](040-BuildingTeamsDialogs.md)
+* [Part 5 - Using Adaptive Cards in Teams bot conversations](050-AdaptiveCardConversations.md)
+* [Part 6 - Building Bot experiences in Teams with messaging extensions and task modules](060-MessagingExtensionsTaskModules.md)
+* [Part 7 - Calling back-end services from Bots in Teams](070-CallingBackEndServices.md)
+
