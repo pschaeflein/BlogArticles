@@ -15,7 +15,23 @@ It turns out this technique can be used for any SharePoint page. If you can edit
 
 To get started, you'll need to understand a little about Microsoft Teams applications. Teams applications can include custom tabs, bots, UI extensions ("messaging extensions"), and more. The Learning Pathways sample is a small Teams app containing some static tabs that display the Learning Pathways SharePoint pages; this is installed in the tenant's enterprise app catalog and pinned to the sidebar for all users.
 
-Teams applications don't run _in_ Teams, they just look like they do. Teams cleverly stitches apps into its UI, either by exchanging web service calls or, in the case of tabs, displaying web pages. A tab is just a web page hosted in the native Teams application or in a browser IFrame.
+Teams apps don't actually run in Teams, they just look like they do. Teams cleverly stitches apps into its UI, either by exchanging web service calls or, in the case of tabs, displaying web pages. A tab is just a web page displayed in the native Teams application or in a browser IFrame. [The "website" tab in Teams](http://davidgiard.com/2019/01/27/AddingAWebsiteTabToAMicrosoftTeamsChannel.aspx) is an obvious example.
 
-An application package is a zip file containing 3 files: two icons (large and small) and a file called manifest.json. The manifest.json file tells Teams where the various parts of the app are located; in this case, it contains the URL's of the Learning Pathways site pages. [(View it here)](https://github.com/msft-teams/tools/blob/master/getstartedapp/manifest.json).
+A Teams app package is a just zip file containing 3 files: two icons (large and small) and a file called manifest.json. The manifest.json file tells Teams where the various parts of the app are located; in this case, it contains the URL's of the Learning Pathways site pages. [(View it here)](https://github.com/msft-teams/tools/blob/master/getstartedapp/manifest.json). You can create the app package manually, or use another Teams app called [App Studio](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/build-and-test/app-studio-overview) to do it. This article includes some features not yet in App Studio, so we'll be creating the manifest file manually; if you can edit a little JSON and zip it up, you have the necessary skills.
 
+Once you have an app package, you can [upload it](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/deploy-and-publish/apps-upload) for yourself or a specific Team, or [publish it to the enterprise app catalog](https://docs.microsoft.com/en-us/microsoftteams/tenant-apps-catalog-teams) for everyone to use. This is accessible from the Apps icon in the sidebar (1). To view the enterprise app store, click the link marked "Built for (tenant name)" (2).  You can see I only have the Getting Started (Learning Pathways) app in my catalog (3). You can upload an app using the Upload link (4); you'll need to be a tenant admin to upload to your tenant's enterprise app catalog. If App uploads are enabled in your tenant, you can also upload apps for yourself and your Teams using this link.
+
+![Apps in Teams](AppsInTeamsCallouts.png)
+
+You can control who can use the app, and pin it to the sidebar, using [Teams app policies](https://docs.microsoft.com/en-us/microsoftteams/teams-custom-app-policies-and-settings) in the Teams admin portal.
+
+![App policies](AppSetupPolicies2.png).
+
+As you can see I've pinned the Getting Started app to the top of the sidebar using this screen.
+
+
+
+References
+
+* [Create an app package for your Microsoft Teams app](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/build-and-test/apps-package)
+* [Use built-in and custom tabs in Microsoft Teams](https://docs.microsoft.com/en-us/microsoftteams/built-in-custom-tabs)
