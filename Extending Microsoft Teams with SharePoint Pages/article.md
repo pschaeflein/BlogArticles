@@ -35,9 +35,7 @@ The app is [in this repository](https://github.com/msft-teams/tools); either clo
 
 [Installation instructions are here](https://github.com/msft-teams/tools/blob/master/getstartedapp/installandconfig.md). At this point, you'll modify the manifest.json file with the URL's of your Learning Pathways site, and mark your SharePoint domain as valid so Teams will allow it. 
 
-You can also replace the icons if you wish, and change the app name, etc. If you need more details, check out the [manifest schema](https://docs.microsoft.com/en-us/microsoftteams/platform/resources/schema/manifest-schema).
-
-NOTE: You could make any number of these apps! Just be sure name them differently and to replace the app ID with a [unique ID](https://www.guidgenerator.com/) each time. 
+You can also [replace the icons](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/build-and-test/apps-package#icons) if you wish, and change the app name, etc. If you want all the details, check out the [manifest schema](https://docs.microsoft.com/en-us/microsoftteams/platform/resources/schema/manifest-schema).
 
 ### 3. Deploy the app
 
@@ -61,6 +59,10 @@ Apps are pinned in the same place as uploads are enabled: in an [app setup polic
 The app may take up to 24 hours to appear in Teams - or to update, so again it's worth working out any kinks in a test tenant first.
 
 # Beyond Get Started
+
+
+
+NOTE: You could make any number of these apps! Just be sure name them differently and to replace the app ID with a [unique ID](https://www.guidgenerator.com/) each time. 
 
 
 
