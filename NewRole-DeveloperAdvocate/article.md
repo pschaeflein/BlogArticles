@@ -20,5 +20,6 @@ In this new role I expect to be:
 
 So it's not that different than what I was already doing, right? But on a larger scale. And some things I was doing on an extracurricular basis will become part of my day job, which is awesome.
 
-I want to thank 
-the US One Commercial Partner Technical Team (OCPTT), especially the Modern Workplace SWARM. It's been a lot of fun and I've learned so much from you all! I look forward to continuing to work with you and Microsoft partners as part of my new role.
+I'm very thankful, especially in such challenging times, to have such a wonderful opportunity! Many thanks to all my colleagues in the One Commercial Partner Technical Team (OCPTT), and to all the awesome partners I've gotten to work with over the last 2 1/2 years. It's been a lot of fun and I've learned so much from you all! I look forward to continuing to work with you and Microsoft partners as part of my new role.
+
+And to all my friends in the wonderful SharePoint/M365 community - I hope to see more of you all than ever and work together on exciting new developer scenarios. The journey is only beginning!
