@@ -46,7 +46,7 @@ When someone - a user or admin - consents to an application's request for permis
 
 Azure AD supports two kinds of permissions:
 
-  * **User delegated** permissions allow an application to act _on behalf of a user_. Therefore, the effective permission is the intersection of the user's permission and the application's permission. For example, suppose Sarah has access to files A, B, and C, and the application has Files.Read permission. When Sarah runs the application, it can read files A, B, and C.
+  * **User delegated** permissions allow an application to act _on behalf of a user_. Therefore, the effective permission is the intersection of the user's permission and the application's permission. For example, suppose Alice has access to files A, B, and C, and the application has Files.Read permission. When Alice runs the application, it can read files A, B, and C.
   * **Application** permissions allow an application to act _on its own behalf_. Therefore the effective permission is generally the application's permission across the whole tenant. This is often used for daemon services or to elevate permissions beyond what the user can do. If an application has Files.Read permission, it can read every file in the entire Microsoft 365 tenant.
 
 User delegated permissions always require the user to prove their identity (log in). In Azure AD this is usually done via some kind of web browser - either a pop-up or hosted browser. This prevents applications from ever touching the user's password or other secrets, and allows Azure AD to enforce policies like multi-factor authentication and conditional access. It also allows Azure AD to prompt the user for any missing consents.
