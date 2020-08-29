@@ -1,17 +1,21 @@
 # Calling the Microsoft Graph from your Teams application - Part 1: Introduction
 
-Microsoft Teams applications almost always need to call the Graph API, yet it's not as easy as just calling a REST service. Most of the complexity has to do with getting an access token, which is required on every Graph call to establish what, if anything, the caller is authorized to do. 
+Microsoft Teams applications almost always need to call the Graph API, yet it's not as easy as just calling a REST service. Most of the complexity has to do with getting an Azure AD access token, which is required on every Graph call to establish what, if anything, the caller is authorized to do.
 
 Getting the access token requires an understanding of Teams, Azure AD, Graph, and sometimes other components like the SharePoint Framework or Bot Framework, yet each of these is documented separately and each one assumes the reader knows all the others. I literally get questions every day from frustrated developers trying to figure this out! (Yesterday I got 3!) In 2 1/2 years of Teams app development, this by far the most common source of difficulties.
 
 I wrote these articles hoping they'll assist developers in calling the Graph from Microsoft Teams. They're also companions for my talk, "Calling Microsoft Graph from your Teams Application", at the [PnP Virtual Conference 2020](https://pnp.github.io/pnpconference/).
 
-1. Introduction (this article)
+1. [Introduction](article1.md) (this article)
 2. [Deep dive concepts](article2.md) - Deep dive concepts (optional)
 3. [Calling Graph from a Teams tab](article3.md)
 4. [Calling Graph from a Teams bot or messaging extension](article4.md)
 
 This article will explain the basics. If all goes well, you can follow the step-by-step instructions in one of the sample apps and be done with it! Some day, the tooling may be improved to automate some of the steps. But you still need to understand the basics. The "deep dive" article is for those who are curious or who need to understand more detail to handle a specific situation or to aid in troubleshooting. The articles which follow target specific scenarios, such as calling the Graph from a tab or bot in Teams.
+
+## The Video
+
+While these articles are intended to stand on their own, they're a companion for my talk at the PnP Virtual Conference on September 1, 2020. I'll post the video here when it's available.
 
 ## Why the Graph API?
 
