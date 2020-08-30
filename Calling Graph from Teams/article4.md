@@ -1,4 +1,4 @@
-# Calling the Microsoft Graph from your Teams application - Part 3: Calling Graph from a Teams tab
+# Calling the Microsoft Graph from your Teams application - Part 4: Calling Graph from a Teams bot or messaging extension
 
 Microsoft Teams applications almost always need to call the Graph API, yet it's not as easy as just calling a REST service. Most of the complexity has to do with getting an Azure AD access token, which is required on every Graph call to establish what, if anything, the caller is authorized to do.
 
@@ -10,6 +10,4 @@ I wrote these articles hoping they'll assist developers in calling the Graph fro
 2. [Deep dive concepts](article2.md) - Deep dive concepts (optional)
 3. [Calling Graph from a Teams tab](article3.md) 
 4. [Calling Graph from a Teams bot or messaging extension](article4.md) (this article)
-
-The first article is intended to explain the basics which anyone should understand before embarking on a Teams project that will call Microsoft Graph. This article is an optional deep dive that will go into more detail, either for the curious or to help in troubleshooting. The articles which follow target specific scenarios, such as calling the Graph from a tab or bot in Teams.
 
