@@ -46,6 +46,8 @@ This pop-up uses the same mechanism as the older non-SSO approach (approach #3).
 
 You can find a full sample with detailed instructions [here](https://github.com/OfficeDev/msteams-tabs-sso-sample-nodejs).
 
+> NOTE: The On Behalf Of flow used in the web service requires use of a Client Secret to prove the application's identity. Secure storage of the client secret is extremely important; this is easily handled in Azure by storing the secret in [Azure Keyvault](https://docs.microsoft.com/en-us/azure/key-vault/general/overview) and using an app setting that contains a [Keyvault Reference](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references). 
+
 ## 2. SharePoint Framework
 
 If you host your tab in SharePoint, you don't have to worry about getting an access token; SharePoint handles this for you! However at the time of this writing, there is a caveat: any permission you give your tab is also given to every 3rd party web part in your tenant's SharePoint installation. SharePoint provides an isolated mode for web parts which addresses this, but it currently doesn't work with Teams tabs.
