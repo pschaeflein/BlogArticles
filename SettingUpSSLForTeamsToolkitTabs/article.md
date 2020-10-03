@@ -4,13 +4,13 @@ I've started using the new Microsoft Teams toolkit and am really liking it! Howe
 
 Here is an alternative approach in which you create your own certificate authority and build certs from that so you can install just one root certificate across all your projects! Each teammate can have their own certs, so you can collaborate as much as you wish and nobody has to go installing certs.
 
-> NOTE: Did you know that the Teams Toolkit uses Create React for tabs? Create React is from Facebook, which created React in the first place; it's very popular and well supported! Want to add TypeScript? Or SSL? If you need help, do a web search on "Create React" and you can find a plethora of helpful articles!
+> NOTE: Did you know that the Teams Toolkit uses [Create React App (CRA)](https://reactjs.org/docs/create-a-new-react-app.html) for tabs? Create React App is a toolchain from Facebook (who created React in the first place) it's very popular and well supported! If you need help, search on "Create React App" and you can find a plethora of helpful articles; [this one](https://dev.to/ganeshagrawal/how-to-setup-https-locally-with-create-react-app-e46) helped me figure this out!
 
 ## Step 1: Create and trust a certificate authority (CA)
 
 This step only needs to be done once for as many projects as you wish. It assumes you already have Node.js installed, as required by the Teams Toolkit.
 
-a. Create a safe/private folder somewhere and go there in your favorite command-line tool, and run these commands:
+**a.** Create a safe/private folder somewhere and go there in your favorite command-line tool, and run these commands:
 
 ~~~bash
 npm install -g mkcert
@@ -18,20 +18,18 @@ mkcert create-ca --organization "MyOrg" --validity 3650
 mkcert create-cert --ca-key "ca.key" --ca-cert "ca.cert" --validity 3650
 ~~~
 
+> NOTE: 3650 is the number of days your certs will be valid; feel free to change it. You can use `--help` on `mkcert` to reveal other options, such as setting an organization name and location (the default org is "Test CA") and customizing the domain names for your certificate (the default is "localhost,127.0.0.1").
+
 This will create a new Certificate Authority and a certificate that was issued from it. You should see 4 files:
 
-| File | |
+| File | Description |
 |---|---|
 | ca.crt | Certificate for your new CA |
 | ca.key | Private key for your new CA |
 | cert.crt | Certificate for use in projects |
 | cert.key | Private key for use in projects |
 
-3650 is the number of days your certs will be valid; I figured 10 years was good enough but you can change it.
-
-NOTE: You can use `--help` on `mkcert` to reveal other options, such as setting an organization name and location (the default org is "Test CA") and customizing the domain names for your certificate (the default is "localhost,127.0.0.1").
-
-b. Now you need to trust the certificate for your new CA; by doing that any cert you create will be trusted with no additional action on your part.
+**b.** Now you need to trust the certificate for your new CA; by doing that any cert you create will be trusted with no additional action on your part.
 
 #### On Windows
 
@@ -94,9 +92,9 @@ sudo update-ca-certificates
 
 This is what you need to do for each project.
 
-a. Create a new folder in your project folder (the same level as the package.json file) called `.cert`. Copy the `cert.crt` and `cert.key` files into this folder.
+**a.** Create a new folder in your project folder (the same level as the package.json file) called `.cert`. Copy the `cert.crt` and `cert.key` files into this folder.
 
-b. Modify your .env file to tell the local web server to use your cert:
+**b.** Modify your .env file to tell the local web server to use your cert:
 
 ~~~text
 HTTPS=true
@@ -105,12 +103,16 @@ SSL_KEY_FILE=./.cert/cert.key
 BROWSER=none
 ~~~
 
-c. Prevent saving the certs to your git repository by adding a line to the .gitignore file
+**c.** Prevent saving the certs to your git repository by adding a line to the `.gitignore` file.
 
 ~~~text
 .cert
 ~~~
 
-Your teammates will need to repeat steps (a) and (b) with their certificates when they start working on the project.
+## Working in a team
+
+Each person should do Step 1 on their computer and work with their own certificates. When someone starts working on a project, they can simply copy their .cert folder into the repo and go to work.
+
+Do you have ideas on how to do this better, especially in a project team? Please chime in using the comments; thanks!
 
 
