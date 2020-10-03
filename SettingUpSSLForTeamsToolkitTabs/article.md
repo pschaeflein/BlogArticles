@@ -15,7 +15,7 @@ This step only needs to be done once for as many projects as you wish. It assume
 ~~~bash
 npm install -g mkcert
 mkcert create-ca --organization "MyOrg" --validity 3650
-mkcert create-cert --ca-key "ca.key" --ca-cert "ca.cert" --validity 3650
+mkcert create-cert --ca-key "ca.key" --ca-cert "ca.crt" --validity 3650
 ~~~
 
 > NOTE: 3650 is the number of days your certs will be valid; feel free to change it. You can use `--help` on `mkcert` to reveal other options, such as setting an organization name and location (the default org is "Test CA") and customizing the domain names for your certificate (the default is "localhost,127.0.0.1").
@@ -31,7 +31,7 @@ This will create a new Certificate Authority and a certificate that was issued f
 
 **b.** Now you need to trust the certificate for your new CA; by doing that any cert you create will be trusted with no additional action on your part.
 
-#### On Windows
+### On Windows
 
  * Double click on the `ca.crt` file and click "Install Certificate".
 
@@ -47,7 +47,7 @@ This will create a new Certificate Authority and a certificate that was issued f
 
  * Restart all instances of your browser to force it to re-read its trusted roots. If in doubt, reboot your computer.
 
-#### On Mac
+### On Mac
 
 (WOULD LOVE SCREEN SHOTS AND CLARIFICATION)
 
@@ -56,37 +56,9 @@ This will create a new Certificate Authority and a certificate that was issued f
  * After adding the certificate to the system keychain, double-click the certificate and expand the Trust section of the certificate details. Select Always Trust for every option.
  * Restart all instances of your browser to force it to re-read its trusted roots. If in doubt, reboot your computer.
 
-#### On Ubuntu Linux (other distros may vary)
+### On Linux
 
-(PRELIMINARY - I WILL TEST AND CLARIFY)
-
-(from https://askubuntu.com/questions/73287/how-do-i-install-a-root-certificate):
-
-* Create a directory for extra CA certificates in /usr/share/ca-certificates:
-
-~~~bash
-sudo mkdir /usr/share/ca-certificates/extra
-~~~
-
-* Copy the CA .crt file to this directory:
-
-~~~bash
-sudo cp ca.crt /usr/share/ca-certificates/extra/ca.crt
-~~~
-
- * Let Ubuntu add the .crt file's path relative to /usr/share/ca-certificates to /etc/ca-certificates.conf:
-
-~~~bash
-sudo dpkg-reconfigure ca-certificates
-~~~
-
-To do this non-interactively, run:
-
-~~~bash
-sudo update-ca-certificates
-~~~
-
- * Restart all instances of your browser to force it to re-read its trusted roots. If in doubt, reboot your computer.
+There are more steps on Linux as most browsers don't use the operating system's certificate store, and a tool called `certutil` is needed to modify the browsers' `cert?.db` files. [This article](https://thomas-leister.de/en/how-to-import-ca-root-certificate/) explains how to install your new root certificate on Linux.
 
 ## Step 2 - Add the certs to your project
 
@@ -111,7 +83,7 @@ BROWSER=none
 
 ## Working in a team
 
-Each person should do Step 1 on their computer and work with their own certificates. When someone starts working on a project, they can simply copy their .cert folder into the repo and go to work.
+Each team member needs to do Step 1 on their computer just once. When a developer starts working on a project they can simply copy the two certificate files into a .cert folder in their project and go to work.
 
 Do you have ideas on how to do this better, especially in a project team? Please chime in using the comments; thanks!
 
