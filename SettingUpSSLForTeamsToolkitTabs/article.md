@@ -49,12 +49,16 @@ This will create a new Certificate Authority and a certificate that was issued f
 
 ### On Mac
 
-(WOULD LOVE SCREEN SHOTS AND CLARIFICATION)
-
- * On OS X, open the Keychain Access utility and select System from the menu on the left. Click the lock icon to enable changes.
- * Click the plus button near the bottom to add a new certificate, and select the localhost.cer file you dragged to the desktop. Click Always Trust in the dialog that appears.
- * After adding the certificate to the system keychain, double-click the certificate and expand the Trust section of the certificate details. Select Always Trust for every option.
- * Restart all instances of your browser to force it to re-read its trusted roots. If in doubt, reboot your computer.
+* Double click on the **ca.crt** file, which should be found under `/Users/[your-name]/`. It will launch Keychain Access app.
+* Enter your password or use Touch ID when prompted.
+    ![Add a cert to Keychain Access](ssl-mac-01.png)
+* The new certificate (in this case, "MyOrg") should be added. Double-click it.
+    ![Open cert in Keychain Access](ssl-mac-02.png)
+* In a new window, expand the **Trust** section of the certificate details. Select "Always Trust" for every option.
+    ![Trust cert in Keychain Access](ssl-mac-03.png)
+* Close the window. Enter your password or use Touch ID again if you are asked. Now the certificate is trusted.
+    ![Trusted cert](ssl-mac-04.png)
+* Restart all instances of your browser to force it to re-read its trusted roots. If in doubt, reboot your computer.
 
 ### On Linux
 
