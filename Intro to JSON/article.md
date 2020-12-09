@@ -1,8 +1,8 @@
 # Introduction to JSON
 
-It seems like JSON is everywhere these days. Microsoft Teams app manifests, SharePoint list formats, and Adaptive Cards are all written in JSON. And JSON is the standard for [REST APIs](#) like Microsoft Graph; you pretty much can't make a call without it. Power Apps, Power Automate, and Power BI can all handle JSON too. It really is everywhere, except, it seems in older products which were written when XML was king.
+It seems like JSON is everywhere these days. Adaptive cards, Microsoft Teams app manifests, and SharePoint site scripts and list formats are all written in JSON. And JSON is the standard for [REST APIs](#) like Microsoft Graph; you pretty much can't make a call without it. Power Apps, Power Automate, and Power BI can all handle JSON too; even Excel can import and export JSON. It really is everywhere except, it seems, in older products which were written when XML was king.
 
-JSON and XML do pretty much the same thing: they give you a way to translate objects in a computer into text strings and back again. In the case of JSON, the "objects" can be any kind of structured data that can be expressed as name/value pairs, including complex values that themselves are made of name/value pairs.
+JSON and XML do pretty much the same thing: they give you a way to translate data structures in a computer into text strings and back again. In the case of JSON, the "objects" can be any kind of structured data that can be expressed as name/value pairs, including complex values that themselves are made of name/value pairs.
 
 > Geek note: Translating JSON text to an object is generally called "parsing", and translating an object into JSON text is "serializing".
 
@@ -12,7 +12,7 @@ A really simple example of JSON is:
 { "name": "Parker" }
 ~~~
 
-It's a single name/value pair enclosed in curly braces. A JSON string has to begin with `{` and end with `}`; the JSON string `{ }` represents an empty object. Names are case sensitive and need to be enclosed in double quotes, and in this case, since "Parker" is a string value, it's enclosed in double quotes as well. Spaces, tabs, and newlines are ignored in JSON, but are helpful for readability.
+It's a single name/value pair enclosed in curly braces. A JSON string has to begin with `{` and end with `}`; the very shortest valid JSON string, `{ }`, represents an empty object. Names are case sensitive and need to be enclosed in double quotes, and in this case, since "Parker" is a string value, it's enclosed in double quotes as well. Spaces, tabs, and newlines are ignored in JSON, but are helpful for readability.
 
 If you want to put more than one name/value pair in your JSON, simply separate them with commas like this:
 
@@ -30,10 +30,12 @@ The value part doesn't need to be a string like "Parker"; it could also be a num
   "name": "Parker",
   "species": "porcupine",
   "occupation": "mascot",
+  "motto": "Sharing is caring",
   "centimeters": 75,
-  "kilograms": 28,
+  "kilograms": 28.5,
+  "quills": 3.0e+4,
   "friendly": true,
-  "siblings": null,
+  "bossy": false,
   "nicknames": [
     "Quill",
     "Spike"
@@ -45,7 +47,8 @@ The value part doesn't need to be a string like "Parker"; it could also be a num
     "order": "rodentia",
     "suborder": "hystricomorpha",
     "infraorder": "hystricognathi"
-  }
+  },
+  "dnaSequence": null
 }
 ~~~
 
@@ -53,18 +56,20 @@ These are all name/value pairs, but there are several kinds of values. Here are 
 
 ## Strings
 
-Strings need to be enclosed in double quotes like `"Parker"`. But what if your string has a double quote in it? `"Parker says "Hello""` is not valid JSON because the parser thinks the `"` before `Hello` is the end of the string, and then it gets really confused. Computers are dumb, aren't they? So to put a `"` within a string, you need to "escape" it by preceeding it with a `\`. For example:
+Strings need to be enclosed in double quotes like `"Parker"`. But what if your string has a double quote in it? `"Parker says "Hello""` is not valid JSON because the parser thinks the `"` before `Hello` is the end of the string, and then it gets really confused. (Computers are dumb, aren't they?) So to put a `"` within a string, you need to "escape" it by preceeding it with a `\`. For example:
 
 ~~~JSON
 {
-      "action": "Parker says \"Hello\""
+  "name": "Parker",
+  "action": "Parker says \"Hello\""
 }
 ~~~
 
-You also have to escape the `\` character, as in:
+As you might expect, this escaping thing is a bit of a slippery slope, and you also have to escape the `\` character, as in:
 
 ~~~JSON
 {
+  "name": "Parker",
   "home": "C:\\Users\\Parker"
 }
 ~~~
@@ -73,22 +78,24 @@ While `"` and `\` are the only characters you need to escape, you can also inser
 
 ~~~JSON
 {
-    "mood": "😀"
+  "name": "Parker",
+  "mood": "😀"
 }
 ~~~
 
 ## Numbers
 
-Numeric values don't get quotes around them. For example, Parker's dimensions and weight are expressed as numbers.
+Numeric values don't get quotes around them. For example, Parker's length and weight are expressed as numbers.
 
 ~~~JSON
 {
+  "name": "Parker",
   "centimeters": 75,
   "kilograms": 28
 }
 ~~~
 
-Note that 75 is not the same as "75", which is a string containing two digits. Numbers are in decimal, and can contain a sign, decimal point, and exponent such as
+Note that 75 is not the same as "75", which is a string containing two digits. Numbers are in decimal, and can contain a sign, decimal point, and exponent such as:
 
 ~~~JSON
 {
@@ -103,40 +110,245 @@ For boolean values, just use `true` and `false` with no quotes.
 
 ~~~JSON
 {
-  "friendly": true
+  "name": "Parker",
+  "friendly": true,
+  "bossy": false
 }
 ~~~
 
-## Dates
+## Objects
 
-Unfortunately, there is no standard way to express a date in JSON. In practice, dates are passed in string values, but different applications use different date formats, which can be a bit maddening at times. Your best bet is to look up the date format in the documentation for the product or API you're using.
-
-## Array
-
-
-
-## Object
-
-## Null
-
-To indicate an empty value, use null.
+All the JSON examples in this article so far have consisted of one JSON object with name/value pairs enclosed in a set of curly braces. But you don't need to limit yourself to one object! You can have as many objects as you want as values inside other objects. This kind of nesting allows you to create a hierarchy.
 
 ~~~JSON
 {
-    
+  "name": "Parker",
+  "classification": {
+    "kingdom": "animalia",
+    "phylum": "chordata",
+    "class": "mammalia",
+    "order": "rodentia",
+    "suborder": "hystricomorpha",
+    "infraorder": "hystricognathi"
+  }
 }
 ~~~
 
+So there we have two names, `"name"` and `"classification"`, and the value of `"classification"` is itself an object with several name/value pairs of its own. This is very convenient for organizing the data and, when combined with arrays, allows creating lists, tables, and all sorts of other data structures.
 
+## Array
 
+An array is an ordered set of values enclosed in square braces `[` and `]`, such as:
 
+~~~JSON
+{
+  "name": "Parker",
+  "nicknames": [
+    "Quill",
+    "Spike"
+  ]
+}
+~~~ 
 
-If you want to 
+or, more succinctly,
 
+~~~JSON
+{
+  "name": "Parker",
+  "nicknames": [ "Quill", "Spike" ]
+}
+~~~ 
 
+Mascots could have any number of nicknames or none at all, and an array allows you to list them. Parker's sister Penny doesn't have any nicknames.
 
+~~~JSON
+{
+  "name": "Penny",
+  "nicknames": []
+}
+~~~ 
 
-There are a lot of web sites out there that will format and validate your JSON; recently I've been using [this one](https://jsonformatter.org/). (Be careful never to paste personal data into these web sites!) Why not open it up and play?
+Arrays of objects are especially useful. For example, suppose you wanted to compile a list of Microsoft developer mascots:
+
+~~~JSON
+{
+  "mascots": [
+    {
+      "name": "Bit",
+      "species": "raccoon",
+      "team": "Microsoft Developer Advocates"
+    },
+    {
+      "name": "G-raffe",
+      "species": "giraffe",
+      "team": "Microsoft Graph"
+    },
+    {
+      "name": "Parker",
+      "species": "porcupine",
+      "team": "Microsoft 365 PnP"
+    }
+  ]
+}
+~~~
+
+Remember that spaces, tabs, and newlines are ignored, so this the same data could be written more compactly like this. Suddenly it starts to look a little bit like a table.
+
+~~~JSON
+{
+  "mascots": [
+    { "name": "Bit", "species": "raccoon", "team": "Microsoft Developer Advocates" },
+    { "name": "G-raffe", "species": "giraffe", "team": "Microsoft Graph" },
+    { "name": "Parker", "species": "porcupine", "team": "Microsoft 365 PnP" }
+  ]
+}
+~~~
+
+Notice that if you change the order of the array values you need to remember to have a comma between each one with no comma at the end. This is kind of a pain when you change the order and need to remember to move the comma. To make this easier, people sometimes leave an extra comma at the end of the last array value; though some applications allow this, it's not part of the JSON spec, so use it at your own risk.
+
+## Dates and other things
+
+Unfortunately, there is no standard way to express a date in JSON. In practice, dates are passed in string values, but different applications use different date formats, which can be a bit maddening at times. Your best bet is to look up the date format in the documentation for the product or API you're using.
+
+Images and other binary objects are rarely included in JSON, but if you wanted to do that you'd need to turn them into strings somehow, perhaps by Base64 encoding them.
+
+## Null
+
+To indicate an empty value, use null. For example, Parker hasn't had his DNA sequenced, so we have no value for that in his profile.
+
+~~~JSON
+{
+  "name": "Parker",
+  "dnaSequence": null
+}
+~~~
+
+Note that `[]`, an empty array, and '{}`, an empty object, are different than null. They're empty containers whereas null is really nothing at all.
+
+## Comments
+
+If I could add one thing to JSON, it would be comments! Officially there are no comments in JSON, but some products (like the SharePoint Framework) seem to encourage using JavaScript style comments in JSON. It seems harmless but it's not proper JSON, and most applications will choke on them.
+
+A trick I sometimes use (if I know it's OK) is to just add a few extra name/value pairs in lieu of comments:
+
+~~~JSON
+{
+  "name": "Parker",
+  "classification": {
+    "comment": "This is the biological taxonomy",
+    "kingdom": "animalia",
+    "phylum": "chordata",
+    "class": "mammalia",
+    "order": "rodentia",
+    "suborder": "hystricomorpha",
+    "infraorder": "hystricognathi"
+  }
+}
+~~~
+
+While it's not recommended, it is [legal](https://tools.ietf.org/html/rfc8259#section-4) to have duplicate names in a JavaScript object, so you could have more than one `"comment"` if you're daring. This is valid JSON:
+
+~~~JSON
+{
+  "name": "Parker",
+  "comment": "Great mascot but gets a bit prickly at times",
+  "comment": "Models for \"Parker's Place\" online apparel shop"
+}
+~~~
+
+## Tools
+
+There are a lot of web sites out there that will format and validate your JSON; recently I've been using [this one](https://jsonformatter.org/), which does both. (NOTE: Be careful never to paste personal data into these web sites!)
+
+## Schema support
+
+It's often helpful to enforce some structure to your JSON, requiring that certain name/value pairs are included with certain value types, etc. That's the role of [JSON Schema](). This allows validating the JSON and offering features such as intellisense.
+
+A JSON Schema describes a specific JSON structure. For example, all animal mascots need to have a `name` and zero or more nicknames with an optional value for `quills`, such as:
+
+~~~JSON
+{
+  "name": "Parker",
+  "nicknames": [
+    "Quill",
+    "Spike"
+  ],
+  "quills": 30000
+}
+~~~
+
+This would be expressed in JSON Schema as:
+
+~~~JSON
+{
+	"definitions": {},
+	"$schema": "http://json-schema.org/draft-07/schema#", 
+	"$id": "https://example.com/object1607485037.json", 
+	"title": "Root", 
+	"type": "object",
+	"required": [
+		"name",
+		"nicknames"
+	],
+	"properties": {
+		"name": {
+			"$id": "#root/name", 
+			"title": "Name", 
+			"type": "string",
+			"default": "",
+			"examples": [
+				"Parker"
+			],
+			"pattern": "^.*$"
+		},
+		"nicknames": {
+			"$id": "#root/nicknames", 
+			"title": "Nicknames", 
+			"type": "array",
+			"default": [],
+			"items":{
+				"$id": "#root/nicknames/items", 
+				"title": "Items", 
+				"type": "string",
+				"default": "",
+				"examples": [
+					"Quill"
+				],
+				"pattern": "^.*$"
+			}
+		},
+		"quills": {
+			"$id": "#root/quills", 
+			"title": "Quills", 
+			"type": "integer",
+			"examples": [
+				30000
+			],
+			"default": 0
+		}
+	}
+}
+~~~
+
+You can add a property to your JSON to indicate the URL of the JSON schema; for example, to indicate that a file is a Microsoft Teams manifest, includes this schema URL:
+
+~~~JSON
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.2/MicrosoftTeams.schema.json"
+}
+~~~
+
+When a `$schema` property is present, Visual Studio and Visual Studio Code will validate your JSON automatically and provide Intellisense. There are a ton of schemas available at [https://www.schemastore.org/json/](https://www.schemastore.org/json/) for you to reference. You can even reference a JSON schema in your own project by just specifying a relative path:
+
+~~~JSON
+{
+  "$schema": "./myschema.json"
+}
+~~~
+
+You can easily generate a schema online using the [JSON Schame Validator and Generator](https://extendsclass.com/json-schema-validator.html); I used it to generate the schema above.
+
+## JSON and JavaScript
 
 
 
