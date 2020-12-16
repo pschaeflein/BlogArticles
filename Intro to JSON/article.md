@@ -2,23 +2,25 @@
 
 It seems like JSON is everywhere these days. [Adaptive cards](https://adaptivecards.io), [Microsoft Teams app manifests](https://docs.microsoft.com/microsoftteams/platform/resources/schema/manifest-schema?WT.mc_id=m365-00000-rogerman), and [SharePoint list formats](https://docs.microsoft.com/sharepoint/dev/declarative-customization/column-formatting?WT.mc_id=m365-00000-rogerman) are all written in JSON. And JSON is the de-facto standard for REST APIs like [Microsoft Graph](https://docs.microsoft.com/graph/overview?WT.mc_id=m365-00000-rogerman); you can't make a call without it. [Power Apps](https://docs.microsoft.com/powerapps/maker/canvas-apps/functions/function-json?WT.mc_id=m365-00000-rogerman), [Power Automate](https://docs.microsoft.com/power-automate/data-operations?WT.mc_id=m365-00000-rogerman), and [Power BI](https://docs.microsoft.com/power-query/connectors/json?WT.mc_id=m365-00000-rogerman) can all handle JSON too. It really is everywhere except, it seems, in older products which were written when XML was king.
 
-The intent of this article is to teach you what you need to know to use JSON in typical IT, low-code, or JavaScript development scenarios. It's organized in order from simple to complex; if you don't need the more complex parts, just skip over them; you can always come back and read them later!
+The intent of this article is to teach you what you need to know to use JSON in typical IT, low-code, or JavaScript development scenarios. It's organized in order from simple to complex; if you don't need some sections, just skip over them; you can always come back and read them later!
 
 ## What is JSON?
 
-JSON is a [standard format](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf) for representing structured data as text. It's commonly used to store data in text files and to exchange data between programs over a network. JSON serves more or less the same purpose as XML but is shorter and easier to read. JSON files usually have a `.json` filename extension.
+JSON is a [standard format](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf) for representing structured data as text; from here on, I'll refer to this text as a "JSON string". JSON is commonly used to store data in text files and to exchange data between programs over a network. JSON files usually have a `.json` filename extension.
 
-JSON data is organized as objects containing name/value pairs. This simple JSON might be the start of a profile for Parker, the PnP mascot, who has kindly agreed to share his personal information for this article.
+> Geek Note: JSON serves more or less the same purpose as XML (eXtensible Markup Language) but it's shorter and easier to read. CSV format serves a similar purpose as well, but it's not a standard so the details tend vary, and it can only store tables (rows and columns) of data.
+
+JSON data is organized as "objects" which contain name/value pairs. This simple example is the first step toward building a profile for Parker, the PnP mascot, who has kindly agreed to share personal information for this article.
 
 ~~~JSON
 { "name": "Parker" }
 ~~~
 
-This JSON contains a single name/value pair; the name is `name` and the value is `"Parker"`. A JSON string has to begin with `{` and end with `}`; the very shortest valid JSON string, `{}`, represents an empty object. Names are case sensitive and need to be enclosed in double quotes, and are followed by a `:` and then a value. In this case, since "Parker" is a string value, it's enclosed in double quotes as well. Spaces, tabs, and newlines are ignored in JSON, but are helpful for readability.
+JSON objects always begin with `{` and end with `}`; the very shortest valid JSON string, `{}`, represents an empty object. This JSON contains a single name/value pair; the name is `name` and the value is `"Parker"`.  As you can see, the name and value are separated by a `:`. Names are case sensitive and need to be enclosed in double quotes. In this case, since "Parker" is a text value, it's enclosed in double quotes as well. Spaces, tabs, and newlines are ignored in JSON, but are helpful for readability.
 
 The values can be simple things like text strings or numbers, collections of values (arrays), or more objects containing their own name/value pairs.
 
-If you want to put more than one name/value pair in your JSON, simply separate them with commas like this:
+If you want to put more than one name/value pair in your JSON, separate them with commas like this:
 
 ~~~JSON
 {
@@ -36,7 +38,7 @@ Note that the order of the name/value pairs doesn't matter; this JSON is equival
 }
 ~~~
 
-The values don't need to be strings like "Parker"; they can also be numbers, booleans, arrays, or more JSON objects. This allows you to have objects within objects.
+The values don't need to be text like "Parker"; they can also be numbers, booleans, collections, or more JSON objects. This allows you to have objects within objects.
 
 Here's a more complete description of the Quilled Crusader that uses all of the JSON data types:
 
@@ -69,9 +71,11 @@ Here's a more complete description of the Quilled Crusader that uses all of the 
 
 These are all name/value pairs, but there are several kinds of values; the next few sections will explain each of them.
 
-## Strings
+> Geek note: Turning data objects into JSON is called "serialization"; turning JSON back into data objects is called "parsing" or sometimes "deserialization".
 
-Strings need to be enclosed in double quotes like `"Parker"`. That seems simple enough, but what if your string has a double quote in it? `"Parker says "Sharing is caring""` is not valid JSON because the parser thinks the `"` before `Sharing` is the end of the string, and then it gets really confused. (Computers are dumb, aren't they?) So to put a `"` within a string, you need to "escape" it by preceeding it with a `\`. For example:
+## Strings (Text)
+
+Strings are just text that's part of the data, such as `"Parker"` or `"rodentia"`, and they need to be enclosed in double quotes. That seems simple enough, but what if your string has a double quote in it? `"Parker says "Sharing is caring""` is not valid JSON because the parser thinks the `"` before `Sharing` is the end of the string, and then it gets really confused. (Computers are dumb, aren't they?) So to put a `"` within a string, you need to "escape" it by preceeding it with a `\`. For example:
 
 ~~~JSON
 {
@@ -89,7 +93,7 @@ As you might expect, this escaping thing is a bit of a slippery slope, as the pa
 }
 ~~~
 
-While `"` and `\` are the only characters you _need_ to escape, [a number of others are available](https://developpaper.com/escape-and-unicode-encoding-in-json-serialization/). You can also insert UTF-16 (Unicode character codes) into your JSON strings in the format \uXXXX, or you can just include Unicode characters in your JSON.
+While `"` and `\` are the only characters you _need_ to escape, [a number of others are available](https://developpaper.com/escape-and-unicode-encoding-in-json-serialization/). You can also insert special characters using Unicode (UTF-16) character codes using the format \uXXXX, but often it's easier to just type Unicode characters in your JSON.
 
 ~~~JSON
 {
@@ -121,7 +125,7 @@ Numbers are in decimal, and can contain a sign, decimal point, and exponent such
 }
 ~~~
 
-## Boolean
+## Boolean (True or False)
 
 For boolean values, just use `true` and `false` with no quotes.
 
@@ -133,7 +137,7 @@ For boolean values, just use `true` and `false` with no quotes.
 }
 ~~~
 
-## Objects
+## Objects (name/value pairs)
 
 All the JSON examples in this article so far have consisted of one JSON object with name/value pairs enclosed in a set of curly braces. But you don't need to limit yourself to one object! You can have as many objects as you want as values inside other objects. This nesting allows you to create a hierarchy.
 
@@ -153,7 +157,7 @@ All the JSON examples in this article so far have consisted of one JSON object w
 
 The top-level object has two name/value pairs, `"name"` and `"classification"`, and the value of `"classification"` is itself an object with several name/value pairs of its own. This is very convenient for organizing the data and, when combined with arrays, allows creating lists, tables, and all sorts of other data structures.
 
-## Array
+## Arrays (collections)
 
 An array is an ordered set of values enclosed in square braces `[` and `]` and separated by commas, such as:
 
