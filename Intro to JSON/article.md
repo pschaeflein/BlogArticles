@@ -1,10 +1,14 @@
 # Introduction to JSON
 
-It seems like JSON is everywhere these days. Adaptive cards, Microsoft Teams app manifests, and SharePoint site scripts and list formats are all written in JSON. And JSON is the standard for [REST APIs](#) like Microsoft Graph; you pretty much can't make a call without it. Power Apps, Power Automate, and Power BI can all handle JSON too; even Excel can import and export JSON. It really is everywhere except, it seems, in older products which were written when XML was king.
+It seems like JSON is everywhere these days. Adaptive cards, Microsoft Teams app manifests, and SharePoint list formats are all written in JSON. And JSON is the standard for [REST APIs](#) like Microsoft Graph; you can't make a call without it. Power Apps, Power Automate, and Power BI can all handle JSON too; even Excel can import and export JSON. It really is everywhere except, it seems, in older products which were written when XML was king.
 
-JSON and XML do pretty much the same thing: they give you a way to translate data structures in a computer into text strings and back again. In the case of JSON, the "objects" can be any kind of structured data that can be expressed as name/value pairs, including complex values that themselves are made of name/value pairs.
+JSON and XML do pretty much the same thing: they give you a way to convert data in a computer into text strings and back again. By using these standard formats, products  can reuse code and developers can reuse their knowledge; it's a win for everyone.
 
-> Geek note: Translating JSON text to an object is generally called "parsing", and translating an object into JSON text is "serializing".
+This article is organized in order from simple to complex; if you don't need the more complex parts, just stop reading; you can always come back and read them later!
+
+JSON data is organized as objects containing name/value pairs. The values can be simple things like text strings or numbers, collections of things (arrays), or more objects containing their own name/value pairs.
+
+> Geek note: Translating JSON text to a data is generally called "parsing", and translating an object into JSON text is "serializing".
 
 A really simple example of JSON is:
 
@@ -12,7 +16,7 @@ A really simple example of JSON is:
 { "name": "Parker" }
 ~~~
 
-It's a single name/value pair enclosed in curly braces. A JSON string has to begin with `{` and end with `}`; the very shortest valid JSON string, `{ }`, represents an empty object. Names are case sensitive and need to be enclosed in double quotes, and in this case, since "Parker" is a string value, it's enclosed in double quotes as well. Spaces, tabs, and newlines are ignored in JSON, but are helpful for readability.
+It's a single name/value pair enclosed in curly braces. A JSON string has to begin with `{` and end with `}`; the very shortest valid JSON string, `{ }`, represents an empty object. Names are case sensitive and need to be enclosed in double quotes, and are followed by a `:` and then a value. In this case, since "Parker" is a string value, it's enclosed in double quotes as well. Spaces, tabs, and newlines are ignored in JSON, but are helpful for readability.
 
 If you want to put more than one name/value pair in your JSON, simply separate them with commas like this:
 
@@ -95,7 +99,7 @@ Numeric values don't get quotes around them. For example, Parker's length and we
 }
 ~~~
 
-Note that 75 is not the same as "75", which is a string containing two digits. Numbers are in decimal, and can contain a sign, decimal point, and exponent such as:
+Note that 75 is not the same as "75", which is a text string containing two digits. Numbers are in decimal, and can contain a sign, decimal point, and exponent such as:
 
 ~~~JSON
 {
@@ -134,7 +138,7 @@ All the JSON examples in this article so far have consisted of one JSON object w
 }
 ~~~
 
-So there we have two names, `"name"` and `"classification"`, and the value of `"classification"` is itself an object with several name/value pairs of its own. This is very convenient for organizing the data and, when combined with arrays, allows creating lists, tables, and all sorts of other data structures.
+So there we have two name/value pairs, `"name"` and `"classification"`, and the value of `"classification"` is itself an object with several name/value pairs of its own. This is very convenient for organizing the data and, when combined with arrays, allows creating lists, tables, and all sorts of other data structures.
 
 ## Array
 
@@ -192,7 +196,7 @@ Arrays of objects are especially useful. For example, suppose you wanted to comp
 }
 ~~~
 
-Remember that spaces, tabs, and newlines are ignored, so this the same data could be written more compactly like this. Suddenly it starts to look a little bit like a table.
+Remember that spaces, tabs, and newlines are ignored, so this the same data could be written more compactly like this. Suddenly it starts to look a little bit like a table!
 
 ~~~JSON
 {
@@ -258,7 +262,7 @@ While it's not recommended, it is [legal](https://tools.ietf.org/html/rfc8259#se
 
 ## Tools
 
-There are a lot of web sites out there that will format and validate your JSON; recently I've been using [this one](https://jsonformatter.org/), which does both. (NOTE: Be careful never to paste personal data into these web sites!)
+There are a lot of web sites out there that will format and validate your JSON; recently I've been using [this one](https://jsonformatter.org/), which does both. (NOTE: Be careful never to paste personal or confidential data into these web sites!)
 
 ## Schema support
 
@@ -330,7 +334,11 @@ This would be expressed in JSON Schema as:
 }
 ~~~
 
-You can add a property to your JSON to indicate the URL of the JSON schema; for example, to indicate that a file is a Microsoft Teams manifest, includes this schema URL:
+If this looks complicated, don't worry; many tools like PowerApps can generate a schema for you based on some sample JSON. You can easily generate a schema online using the [JSON Schame Validator and Generator](https://extendsclass.com/json-schema-validator.html); I used it to generate the schema above.
+
+Why bother? Well once you have a scehma, you can get syntax checking and intellisense in tools like Visual Studio Code. Power Apps and Power Automate use schemas to determine what name/value pairs are available in your application.
+
+You can add a property to your JSON to indicate the URL of the JSON schema; for example, to indicate that a file is a Microsoft Teams manifest, include this schema URL:
 
 ~~~JSON
 {
@@ -346,9 +354,55 @@ When a `$schema` property is present, Visual Studio and Visual Studio Code will 
 }
 ~~~
 
-You can easily generate a schema online using the [JSON Schame Validator and Generator](https://extendsclass.com/json-schema-validator.html); I used it to generate the schema above.
-
 ## JSON and JavaScript
+
+Although JSON stands for "JavaScript Object Notation", and was inspired by the format JavaScript uses for object literals, they are not the same. Some major differences are:
+
+ * In a JavaScript object literal, the names only need to be enclosed in quotes if they are reserved words like `for` or `if` in JavaScript. Furthermore, you can use either single or double quotes. In JSON, names always need to be enclosed in double quotes.
+ * JavaScript objects can contain values such as dates, regular expressions, and HTML elements, whereas JSON values are limited to strings, numbers, boolean, arrays, and null.
+ * JavaScript strings can be contained in single or double quotes; JSON strings must be contained in double quotes
+ * JavaScript numbers can be in octal (using a leading 0) or hexadecimal (using a leading 0x) as well as decimal; JSON numbers must be in decimal.
+
+Bottom line: all JSON objects are valid JavaScript object literals but not all JavaScript object literals are valid JSON.
+
+If you're writing JavaScript, you'll often need to convert a JSON string to an object. You can easily do this using the JSON object. To convert JSON to a JavaScript object,
+
+~~~javascript
+var json = '{"name": "Parker"}';
+var o = JSON.parse(json);
+
+console.log(o.name); // Parker
+~~~
+
+To convert a JavaScript object to JSON:
+
+~~~javascript
+var o = new Object();
+o.name = "Parker";
+var json = JSON.stringify(o);
+
+console.log(json);  // {"name":"Parker"}
+~~~
+
+When you make a REST call, you end up using JSON as well. Here's a call to the Microsoft Graph:
+
+~~~javascript
+const response = await fetch("https://graph.microsoft.com/v1.0/me/",
+    {
+        method: 'GET',
+        headers: {
+            "accept": "application/json",
+            "authorization": "bearer " + token,
+        }
+    });
+
+if (response.ok) {
+    const profile = await response.json();
+    const name = profile.displayName;   // Parker
+}
+~~~
+
+Notice that to ask the service for a JSON response, the HTTP header is set to accept "application/json", which is the MIME type for JSON. And the `response` object returned by `fetch()` has a `json()` function built right in to turn the returned JSON into a JavaScript object.
 
 
 
