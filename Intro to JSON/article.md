@@ -6,19 +6,19 @@ The intent of this article is to teach you what you need to know to use JSON in 
 
 ## What is JSON?
 
-JSON is a [standard format](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf) for converting data objects to text strings and back again. It's commonly used to store data in text files and to exchange data between programs or over a network. JSON text files usually have a filename extension `.json`. JSON serves more or less the same purpose as XML but is shorter and easier to read.
+JSON is a [standard format](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf) for converting data objects to text strings and back again. It's commonly used to store structured data in text files and to exchange data between programs or over a network. JSON serves more or less the same purpose as XML but is shorter and easier to read. JSON files usually have a `.json` filename extension.
 
-> Geek note: Translating JSON text to data is generally called "parsing", and translating data into JSON text is "serializing".
-
-JSON data is organized as objects containing name/value pairs. The values can be simple things like text strings or numbers, collections of things (arrays), or more objects containing their own name/value pairs.
-
-A simple example of JSON is:
+JSON data is organized as objects containing name/value pairs. This simple JSON might be the start of a profile for Parker, the PnP mascot, who has kindly agreed to share his personal information for this article.
 
 ~~~JSON
 { "name": "Parker" }
 ~~~
 
 This JSON contains a single name/value pair; the name is `name` and the value is `"Parker"`. A JSON string has to begin with `{` and end with `}`; the very shortest valid JSON string, `{}`, represents an empty object. Names are case sensitive and need to be enclosed in double quotes, and are followed by a `:` and then a value. In this case, since "Parker" is a string value, it's enclosed in double quotes as well. Spaces, tabs, and newlines are ignored in JSON, but are helpful for readability.
+
+The values can be simple things like text strings or numbers, collections of things (arrays), or more objects containing their own name/value pairs.
+
+
 
 If you want to put more than one name/value pair in your JSON, simply separate them with commas like this:
 
