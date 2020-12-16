@@ -6,7 +6,7 @@ The intent of this article is to teach you what you need to know to use JSON in 
 
 ## What is JSON?
 
-JSON is a [standard format](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf) for converting data objects to text strings and back again. It's commonly used to store structured data in text files and to exchange data between programs or over a network. JSON serves more or less the same purpose as XML but is shorter and easier to read. JSON files usually have a `.json` filename extension.
+JSON is a [standard format](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf) for representing structured data as text. It's commonly used to store data in text files and to exchange data between programs over a network. JSON serves more or less the same purpose as XML but is shorter and easier to read. JSON files usually have a `.json` filename extension.
 
 JSON data is organized as objects containing name/value pairs. This simple JSON might be the start of a profile for Parker, the PnP mascot, who has kindly agreed to share his personal information for this article.
 
@@ -16,9 +16,7 @@ JSON data is organized as objects containing name/value pairs. This simple JSON 
 
 This JSON contains a single name/value pair; the name is `name` and the value is `"Parker"`. A JSON string has to begin with `{` and end with `}`; the very shortest valid JSON string, `{}`, represents an empty object. Names are case sensitive and need to be enclosed in double quotes, and are followed by a `:` and then a value. In this case, since "Parker" is a string value, it's enclosed in double quotes as well. Spaces, tabs, and newlines are ignored in JSON, but are helpful for readability.
 
-The values can be simple things like text strings or numbers, collections of things (arrays), or more objects containing their own name/value pairs.
-
-
+The values can be simple things like text strings or numbers, collections of values (arrays), or more objects containing their own name/value pairs.
 
 If you want to put more than one name/value pair in your JSON, simply separate them with commas like this:
 
@@ -29,9 +27,18 @@ If you want to put more than one name/value pair in your JSON, simply separate t
 }
 ~~~
 
-The value part doesn't need to be a string like "Parker"; it could also be a number, a boolean, an array, or another JSON object. This allows you to have objects within objects.
+Note that the order of the name/value pairs doesn't matter; this JSON is equivalent to the one above:
 
-For example, here's a more complete description of the quilled crusader:
+~~~JSON
+{
+  "species": "porcupine",
+  "name": "Parker"
+}
+~~~
+
+The values don't need to be strings like "Parker"; they can also be numbers, booleans, arrays, or more JSON objects. This allows you to have objects within objects.
+
+Here's a more complete description of the Quilled Crusader that uses all of the JSON data types:
 
 ~~~JSON
 {
@@ -45,7 +52,7 @@ For example, here's a more complete description of the quilled crusader:
   "friendly": true,
   "bossy": false,
   "nicknames": [
-    "Quill",
+    "Quilled Crusader",
     "Spike"
   ],
   "classification": {
@@ -60,7 +67,7 @@ For example, here's a more complete description of the quilled crusader:
 }
 ~~~
 
-These are all name/value pairs, but there are several kinds of values. The next few sections will explain each kind of value available in JSON.
+These are all name/value pairs, but there are several kinds of values; the next few sections will explain each of them.
 
 ## Strings
 
@@ -82,7 +89,7 @@ As you might expect, this escaping thing is a bit of a slippery slope, as the pa
 }
 ~~~
 
-While `"` and `\` are the only characters you need to escape, you can also insert UTF-16 code into your JSON strings in the format \uXXXX... but then, you could just include the Unicode character in your JSON.
+While `"` and `\` are the only characters you _need_ to escape, [a number of others are available](https://developpaper.com/escape-and-unicode-encoding-in-json-serialization/). You can also insert UTF-16 (Unicode character codes) into your JSON strings in the format \uXXXX, or you can just include Unicode characters in your JSON.
 
 ~~~JSON
 {
@@ -103,7 +110,7 @@ Numeric values don't get quotes around them. For example, Parker's length and we
 }
 ~~~
 
-Note that 75 is not the same as "75", which is a text string containing two digits.
+Note that 75 is not the same as "75"; the quotes would indicate the characters `7` and `5` rather than a number.
 
 Numbers are in decimal, and can contain a sign, decimal point, and exponent such as:
 
@@ -128,7 +135,7 @@ For boolean values, just use `true` and `false` with no quotes.
 
 ## Objects
 
-All the JSON examples in this article so far have consisted of one JSON object with name/value pairs enclosed in a set of curly braces. But you don't need to limit yourself to one object! You can have as many objects as you want as values inside other objects. This kind of nesting allows you to create a hierarchy.
+All the JSON examples in this article so far have consisted of one JSON object with name/value pairs enclosed in a set of curly braces. But you don't need to limit yourself to one object! You can have as many objects as you want as values inside other objects. This nesting allows you to create a hierarchy.
 
 ~~~JSON
 {
@@ -144,7 +151,7 @@ All the JSON examples in this article so far have consisted of one JSON object w
 }
 ~~~
 
-So there are two name/value pairs, `"name"` and `"classification"`, and the value of `"classification"` is itself an object with several name/value pairs of its own. This is very convenient for organizing the data and, when combined with arrays, allows creating lists, tables, and all sorts of other data structures.
+The top-level object has two name/value pairs, `"name"` and `"classification"`, and the value of `"classification"` is itself an object with several name/value pairs of its own. This is very convenient for organizing the data and, when combined with arrays, allows creating lists, tables, and all sorts of other data structures.
 
 ## Array
 
@@ -154,7 +161,7 @@ An array is an ordered set of values enclosed in square braces `[` and `]` and s
 {
   "name": "Parker",
   "nicknames": [
-    "Quill",
+    "Quilled Crusader",
     "Spike"
   ]
 }
@@ -165,7 +172,7 @@ or, more succinctly,
 ~~~JSON
 {
   "name": "Parker",
-  "nicknames": [ "Quill", "Spike" ]
+  "nicknames": [ "Quilled Crusader", "Spike" ]
 }
 ~~~ 
 
@@ -214,11 +221,11 @@ Remember that spaces, tabs, and newlines are ignored, so this the same data coul
 }
 ~~~
 
-> MIND THE COMMAS! There must be exactly one (1) comma between name/value pairs and array elements. It's really easy to misplace a comman in JSON, especially if you're copying and pasting. Some people like to leave an extra comma after the last name/value pair to make it easier to re-arrange things, but that's cheating; it's not part of the JSON standard and some applications won't accept it.
+> MIND THE COMMAS! There must be exactly one (1) comma between name/value pairs and array elements. It's really easy to misplace a comman in JSON, especially if you're copying and pasting. Some people like to leave an extra comma after the last name/value pair or array element to make it easier to re-arrange things, but that's cheating; it's not part of the JSON standard and some applications won't accept it.
 
 ## Dates and other things
 
-Unfortunately, there is no standard way to express a date in JSON. In practice, dates are passed in string values, but different applications use different date formats, which can be a bit maddening at times. Your best bet is to look up the date format in the documentation for the product or API you're using.
+Unfortunately, there is no standard way to express a date in JSON. In practice, dates are passed in string values, but different applications use different date formats, which can be a bit maddening at times. The Microsoft Graph API uses [ISO 8601 format](https://www.w3.org/TR/NOTE-datetime).
 
 Images and other binary objects are rarely included in JSON, but if you wanted to do that you'd need to turn them into strings somehow, perhaps by [Base64 encoding](https://en.wikipedia.org/wiki/Base64) them.
 
@@ -282,7 +289,7 @@ A JSON Schema describes a specific JSON structure. For example, all animal masco
 {
   "name": "Parker",
   "nicknames": [
-    "Quill",
+    "Quilled Crusader",
     "Spike"
   ],
   "quills": 30000
@@ -324,7 +331,7 @@ This would be expressed in JSON Schema as:
 				"type": "string",
 				"default": "",
 				"examples": [
-					"Quill"
+					"Quilled Crusader"
 				],
 				"pattern": "^.*$"
 			}
