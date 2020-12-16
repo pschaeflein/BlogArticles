@@ -1,22 +1,24 @@
 # Introduction to JSON
 
-It seems like JSON is everywhere these days. Adaptive cards, Microsoft Teams app manifests, and SharePoint list formats are all written in JSON. And JSON is the standard for [REST APIs](#) like Microsoft Graph; you can't make a call without it. Power Apps, Power Automate, and Power BI can all handle JSON too; even Excel can import and export JSON. It really is everywhere except, it seems, in older products which were written when XML was king.
+It seems like JSON is everywhere these days. [Adaptive cards](https://adaptivecards.io), [Microsoft Teams app manifests](https://docs.microsoft.com/microsoftteams/platform/resources/schema/manifest-schema?WT.mc_id=m365-00000-rogerman), and [SharePoint list formats](https://docs.microsoft.com/sharepoint/dev/declarative-customization/column-formatting?WT.mc_id=m365-00000-rogerman) are all written in JSON. And JSON is the de-facto standard for REST APIs like [Microsoft Graph](https://docs.microsoft.com/graph/overview?WT.mc_id=m365-00000-rogerman); you can't make a call without it. [Power Apps](https://docs.microsoft.com/powerapps/maker/canvas-apps/functions/function-json?WT.mc_id=m365-00000-rogerman), [Power Automate](https://docs.microsoft.com/power-automate/data-operations?WT.mc_id=m365-00000-rogerman), and [Power BI](https://docs.microsoft.com/power-query/connectors/json?WT.mc_id=m365-00000-rogerman) can all handle JSON too. It really is everywhere except, it seems, in older products which were written when XML was king.
 
-JSON and XML do pretty much the same thing: they give you a way to convert data in a computer into text strings and back again. By using these standard formats, products  can reuse code and developers can reuse their knowledge; it's a win for everyone.
+The intent of this article is to teach you what you need to know to use JSON in typical IT, low-code, or JavaScript development scenarios. It's organized in order from simple to complex; if you don't need the more complex parts, just stop reading; you can always come back and read them later!
 
-This article is organized in order from simple to complex; if you don't need the more complex parts, just stop reading; you can always come back and read them later!
+## What is JSON?
+
+JSON is a [standard format](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf) for converting data objects to text strings and back again. It's commonly used to store data in text files and to exchange data between programs or over a network. JSON serves more or less the same purpose as XML but is shorter and easier to read.
+
+> Geek note: Translating JSON text to data is generally called "parsing", and translating data into JSON text is "serializing".
 
 JSON data is organized as objects containing name/value pairs. The values can be simple things like text strings or numbers, collections of things (arrays), or more objects containing their own name/value pairs.
 
-> Geek note: Translating JSON text to a data is generally called "parsing", and translating an object into JSON text is "serializing".
-
-A really simple example of JSON is:
+A simple example of JSON is:
 
 ~~~JSON
 { "name": "Parker" }
 ~~~
 
-It's a single name/value pair enclosed in curly braces. A JSON string has to begin with `{` and end with `}`; the very shortest valid JSON string, `{ }`, represents an empty object. Names are case sensitive and need to be enclosed in double quotes, and are followed by a `:` and then a value. In this case, since "Parker" is a string value, it's enclosed in double quotes as well. Spaces, tabs, and newlines are ignored in JSON, but are helpful for readability.
+This JSON contains a single name/value pair; the name is `name` and the value is `"Parker"`. A JSON string has to begin with `{` and end with `}`; the very shortest valid JSON string, `{}`, represents an empty object. Names are case sensitive and need to be enclosed in double quotes, and are followed by a `:` and then a value. In this case, since "Parker" is a string value, it's enclosed in double quotes as well. Spaces, tabs, and newlines are ignored in JSON, but are helpful for readability.
 
 If you want to put more than one name/value pair in your JSON, simply separate them with commas like this:
 
@@ -27,7 +29,9 @@ If you want to put more than one name/value pair in your JSON, simply separate t
 }
 ~~~
 
-The value part doesn't need to be a string like "Parker"; it could also be a number, a boolean, an array, or another JSON object. This allows you to have objects within objects. For example, here's a more complete description of the quilled crusader:
+The value part doesn't need to be a string like "Parker"; it could also be a number, a boolean, an array, or another JSON object. This allows you to have objects within objects.
+
+For example, here's a more complete description of the quilled crusader:
 
 ~~~JSON
 {
@@ -56,11 +60,11 @@ The value part doesn't need to be a string like "Parker"; it could also be a num
 }
 ~~~
 
-These are all name/value pairs, but there are several kinds of values. Here are the details on each kind of value available in JSON:
+These are all name/value pairs, but there are several kinds of values. The next few sections will explain each kind of value available in JSON.
 
 ## Strings
 
-Strings need to be enclosed in double quotes like `"Parker"`. But what if your string has a double quote in it? `"Parker says "Hello""` is not valid JSON because the parser thinks the `"` before `Hello` is the end of the string, and then it gets really confused. (Computers are dumb, aren't they?) So to put a `"` within a string, you need to "escape" it by preceeding it with a `\`. For example:
+Strings need to be enclosed in double quotes like `"Parker"`. That seems simple enough, but what if your string has a double quote in it? `"Parker says "Hello""` is not valid JSON because the parser thinks the `"` before `Hello` is the end of the string, and then it gets really confused. (Computers are dumb, aren't they?) So to put a `"` within a string, you need to "escape" it by preceeding it with a `\`. For example:
 
 ~~~JSON
 {
@@ -69,7 +73,7 @@ Strings need to be enclosed in double quotes like `"Parker"`. But what if your s
 }
 ~~~
 
-As you might expect, this escaping thing is a bit of a slippery slope, and you also have to escape the `\` character, as in:
+As you might expect, this escaping thing is a bit of a slippery slope and you also have to escape the `\` character as well:
 
 ~~~JSON
 {
@@ -99,7 +103,9 @@ Numeric values don't get quotes around them. For example, Parker's length and we
 }
 ~~~
 
-Note that 75 is not the same as "75", which is a text string containing two digits. Numbers are in decimal, and can contain a sign, decimal point, and exponent such as:
+Note that 75 is not the same as "75", which is a text string containing two digits.
+
+Numbers are in decimal, and can contain a sign, decimal point, and exponent such as:
 
 ~~~JSON
 {
@@ -138,7 +144,7 @@ All the JSON examples in this article so far have consisted of one JSON object w
 }
 ~~~
 
-So there we have two name/value pairs, `"name"` and `"classification"`, and the value of `"classification"` is itself an object with several name/value pairs of its own. This is very convenient for organizing the data and, when combined with arrays, allows creating lists, tables, and all sorts of other data structures.
+So there are two name/value pairs, `"name"` and `"classification"`, and the value of `"classification"` is itself an object with several name/value pairs of its own. This is very convenient for organizing the data and, when combined with arrays, allows creating lists, tables, and all sorts of other data structures.
 
 ## Array
 
@@ -214,11 +220,11 @@ Notice that if you change the order of the array values you need to remember to 
 
 Unfortunately, there is no standard way to express a date in JSON. In practice, dates are passed in string values, but different applications use different date formats, which can be a bit maddening at times. Your best bet is to look up the date format in the documentation for the product or API you're using.
 
-Images and other binary objects are rarely included in JSON, but if you wanted to do that you'd need to turn them into strings somehow, perhaps by Base64 encoding them.
+Images and other binary objects are rarely included in JSON, but if you wanted to do that you'd need to turn them into strings somehow, perhaps by [Base64 encoding](https://en.wikipedia.org/wiki/Base64) them.
 
 ## Null
 
-To indicate an empty value, use null. For example, Parker hasn't had his DNA sequenced, so we have no value for that in his profile.
+To indicate an empty value, use null. For example, Parker hasn't had his DNA sequenced, so there is no value for that in his profile.
 
 ~~~JSON
 {
@@ -227,13 +233,13 @@ To indicate an empty value, use null. For example, Parker hasn't had his DNA seq
 }
 ~~~
 
-Note that `[]`, an empty array, and '{}`, an empty object, are different than null. They're empty containers whereas null is really nothing at all.
+Note that `[]`, an empty array, and `{}`, an empty object, are different than null. They're empty containers whereas null is really nothing at all.
 
 ## Comments
 
-If I could add one thing to JSON, it would be comments! Officially there are no comments in JSON, but some products (like the SharePoint Framework) seem to encourage using JavaScript style comments in JSON. It seems harmless but it's not proper JSON, and most applications will choke on them.
+If only JSON supported comments, it would be possible to add notes to JSON to make it easier for people to understand! Officially there are no comments in JSON, but some products (like the SharePoint Framework) seem to encourage using JavaScript style comments in JSON. It seems harmless but it's not proper JSON, and most applications will choke on them.
 
-A trick I sometimes use (if I know it's OK) is to just add a few extra name/value pairs in lieu of comments:
+One trick that's usually OK is to just add a few extra name/value pairs in lieu of comments; most software will simply ignore the extra data. For example:
 
 ~~~JSON
 {
@@ -334,7 +340,7 @@ This would be expressed in JSON Schema as:
 }
 ~~~
 
-If this looks complicated, don't worry; many tools like PowerApps can generate a schema for you based on some sample JSON. You can easily generate a schema online using the [JSON Schame Validator and Generator](https://extendsclass.com/json-schema-validator.html); I used it to generate the schema above.
+If this looks complicated, don't worry; many tools like PowerApps can generate a schema for you based on some sample JSON. You can easily generate a schema online using the [JSON Schame Validator and Generator](https://extendsclass.com/json-schema-validator.html); it was used to generate the schema above.
 
 Why bother? Well once you have a scehma, you can get syntax checking and intellisense in tools like Visual Studio Code. Power Apps and Power Automate use schemas to determine what name/value pairs are available in your application.
 
@@ -353,6 +359,26 @@ When a `$schema` property is present, Visual Studio and Visual Studio Code will 
   "$schema": "./myschema.json"
 }
 ~~~
+
+## OData
+
+You may notice some names in your JSON which look kind of odd and begin with `@odata`. For example, here's the beginning of the data returned by the Microsoft Graph call `https://graph.microsoft.com/v1.0/me/messages` (returns messages in the user's inbox):
+
+~~~JSON
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users('19671429-1359-457f-bfc1-1be1ee65d4d9')/messages",
+  "@odata.nextLink": "https://graph.microsoft.com/v1.0/me/messages?$skip=10",
+  "value": [
+      {
+          "@odata.type": "#microsoft.graph.eventMessage",
+          "@odata.etag": "W/\"DQAAABYAAADcd/V5PKGOSLpB9pjjNuVqAALT5+Dw\"",
+          "id": "AAMkADIxMjk0NDNjLTJmNWItNDYzNy04MmQ2LTQyMjhkM2FjOWE3MQBGAAAAAAA7bH43fGymSJWqX6oeXPByBwDcd-V5PKGOSLpB9pjjNuVqAAAAAAEMAADcd-V5PKGOSLpB9pjjNuVqAALV0JNVAAA=",
+          "createdDateTime": "2020-12-16T00:14:19Z",
+~~~
+
+[OData](https://www.odata.org/) is a standard for doing Create, Read, Update, and Delete (CRUD) operations on tabular data over a REST web service, and the Microsoft Graph uses it where appropriate. Email messages are easily expressed as tabular data, so it's no surprise that the Graph uses OData to work with them.
+
+The name/value pairs beginning with `@odata.` are OData _control information_ used to control the flow of data. For example the value of `@odata.nextLink` is the URL to retrive the next set of rows in a large dataset. You can find details on all the OData Control Information [here](http://docs.oasis-open.org/odata/odata-json-format/v4.0/cos01/odata-json-format-v4.0-cos01.html#_Toc372793050) in the OData documentation.
 
 ## JSON and JavaScript
 
@@ -404,46 +430,6 @@ if (response.ok) {
 
 Notice that to ask the service for a JSON response, the HTTP header is set to accept "application/json", which is the MIME type for JSON. And the `response` object returned by `fetch()` has a `json()` function built right in to turn the returned JSON into a JavaScript object.
 
+## Conclusion
 
-
-# LINKS
-
-Teams app manifest
-SharePoint site themes and list formatting
-API's like the Microsoft Graph
-Excel can import and export it
-Parsers in PowerApps, Power Automate, and Power BI
- - Power Apps: https://docs.microsoft.com/en-us/powerapps/maker/canvas-apps/functions/function-json
- - Power Automate: https://docs.microsoft.com/en-us/power-automate/data-operations
- - ower BI: https://docs.microsoft.com/en-us/power-query/connectors/json
-
-
-Name/value pairs
-
-* keys must be quoted with double quotes
-* values can be: string (double-quoted only), number (decimal only), object, array, true, false, or null
-
-Have a little subsection for each type of value
-
-* strings: quoting, escaping
-* number: signed, unsigned, exponent, decimal only
-* object: unordered name/value pairs
-* array: ordered values
-
-Using JSON
-
-* REST calls - specify MIME type application/json
-* In Power Platform
-
-Schema support
-
-Comments in JSON
-
-JSON in JavaScript
-* JSON is a subset of JavaScript literal notation - all JSON strings are valid JavaScript literals but not viceversa
-* Show code for converting JavaScript objects to/from JSON
-
-
-
-
-
+Learning to work with JSON is an important skill for both low-code and full stack developers, as well as for many IT Pro tasks. Here's hoping this article has helped you to understand and use JSON in your next project!
