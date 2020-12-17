@@ -225,7 +225,7 @@ Remember that spaces, tabs, and newlines are ignored, so this the same data coul
 }
 ~~~
 
-> MIND THE COMMAS! There must be exactly one (1) comma between name/value pairs and array elements. It's really easy to misplace a comman in JSON, especially if you're copying and pasting. Some people like to leave an extra comma after the last name/value pair or array element to make it easier to re-arrange things, but that's cheating; it's not part of the JSON standard and some applications won't accept it.
+> MIND THE COMMAS! There must be exactly one (1) comma between name/value pairs and array elements. It's really easy to misplace a comma in JSON, especially if you're copying and pasting. Some people like to leave an extra comma after the last name/value pair or array element to make it easier to re-arrange things, but that's cheating; it's not part of the JSON standard and some applications won't accept it.
 
 ## Dates and other things
 
